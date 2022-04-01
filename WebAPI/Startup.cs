@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Entities.CommentairesEntities;
 using Entities.DatabasesContext;
 using Entities.ExemplesEntitie;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +38,7 @@ namespace WebAPI
             var mapperConfig = new MapperConfiguration(config =>
             {
                 config.AddProfile<ExempleProfile>();
+                config.AddProfile<CommentaireProfile>();
             });
 
             mapperConfig.AssertConfigurationIsValid();
@@ -49,7 +51,7 @@ namespace WebAPI
 
             // Ajout des services des différents Cruds
             services.AddScoped<ICrudInterface<Exemple>, ExempleCrudQueryHandler>();
-
+            services.AddScoped<ICrudInterface<Commentaire>, CommentaireCrudQueryHandler>();
 
 
 
