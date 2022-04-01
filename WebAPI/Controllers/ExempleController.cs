@@ -31,12 +31,7 @@ namespace WebAPI.Controllers
 
             if (result.Any())
             {
-                var resultDto = new List<ExempleDto>();
-
-                foreach (var entity in result)
-                {
-                    resultDto.Add(_mapper.Map<ExempleDto>(entity));
-                }
+                var resultDto = result.Select(entity => _mapper.Map<ExempleDto>(entity)).ToList();
 
                 return Ok(resultDto);
             }
