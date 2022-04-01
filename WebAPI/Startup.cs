@@ -11,8 +11,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Entities.DatabasesContext;
+using Entities.ExemplesEntitie;
 using Microsoft.EntityFrameworkCore;
+using Queries;
+using Queries.Interface;
+using WebAPI.AutoMapperProfiles;
 
 namespace WebAPI
 {
@@ -28,10 +33,25 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // AutoMapper
+            var mapperConfig = new MapperConfiguration(config =>
+            {
+                config.AddProfile<ExempleProfile>();
+            });
+
+            mapperConfig.AssertConfigurationIsValid();
+
             services.AddAutoMapper(typeof(Startup));
 
             services.AddDbContext<DatabaseContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+
+            // Ajout des services des différents Cruds
+            services.AddScoped<ICrudInterface<Exemple>, ExempleCrudQueryHandler>();
+
+
+
 
             services.AddControllers();
 

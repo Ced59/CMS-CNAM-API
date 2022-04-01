@@ -5,7 +5,7 @@ namespace Entities.DatabasesContext
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<Exemple> Exmples { get; set; }
+        public DbSet<Exemple> Exemples { get; set; }
 
         public DatabaseContext() : base() {}
         
@@ -14,6 +14,20 @@ namespace Entities.DatabasesContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Exemple>().ToTable("Exemples");
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=CMS_CNAM_Db;Trusted_Connection=True;MultipleActiveResultSets=true", builder =>
+                {
+                    builder.CommandTimeout(300);
+                });
+            }
+
+            optionsBuilder.EnableSensitiveDataLogging();
         }
     }
 }

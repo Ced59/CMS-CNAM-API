@@ -20,6 +20,8 @@ namespace WebAPI.AutoMapperProfiles
         private void MapDtoToEntities()
         {
             CreateMap<ExempleDto, Exemple>();
+            CreateMap<ExemplePostDto, Exemple>()
+                .ForMember(x => x.Id, opt => opt.Ignore());
         }
     }
 }
