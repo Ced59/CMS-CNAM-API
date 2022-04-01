@@ -17,6 +17,13 @@ namespace WebAPI.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet]
+        [Route("exemples")]
+        public IEnumerable<ExempleDto> GetAll()
+        {
+
+            return new List<ExempleDto>();
+        }
 
         [HttpGet]
         [Route("exemple")]
@@ -25,13 +32,18 @@ namespace WebAPI.Controllers
             return new ExempleDto();
         }
 
-
-        [HttpGet]
-        [Route("exemples")]
-        public IEnumerable<ExempleDto> GetAll()
+        [HttpPost]
+        [Route("exemple")]
+        public void Post(ExempleDto exempleDto)
         {
 
-            return new List<ExempleDto>();
+        }
+
+        [HttpPut]
+        [Route("exemple")]
+        public void Put(ExempleDto exempleDto)
+        {
+
         }
 
     }
