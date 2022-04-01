@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI\WebAPI.csproj", "{88176514-EEC0-4E23-A264-93981730CB6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities\Entities.csproj", "{D219DBB1-1D1A-4DD5-94AA-4E7A92C5BE67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dto", "Dto\Dto\Dto.csproj", "{64D35AF4-0BA3-4CA8-9356-2A8AF499637F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88176514-EEC0-4E23-A264-93981730CB6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88176514-EEC0-4E23-A264-93981730CB6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88176514-EEC0-4E23-A264-93981730CB6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88176514-EEC0-4E23-A264-93981730CB6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D219DBB1-1D1A-4DD5-94AA-4E7A92C5BE67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D219DBB1-1D1A-4DD5-94AA-4E7A92C5BE67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D219DBB1-1D1A-4DD5-94AA-4E7A92C5BE67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D219DBB1-1D1A-4DD5-94AA-4E7A92C5BE67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64D35AF4-0BA3-4CA8-9356-2A8AF499637F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64D35AF4-0BA3-4CA8-9356-2A8AF499637F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64D35AF4-0BA3-4CA8-9356-2A8AF499637F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64D35AF4-0BA3-4CA8-9356-2A8AF499637F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {12E6C9C3-91EB-492B-9E6C-E31A7966061F}
+	EndGlobalSection
+EndGlobal
