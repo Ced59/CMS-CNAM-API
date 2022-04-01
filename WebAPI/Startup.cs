@@ -51,7 +51,7 @@ namespace WebAPI
 
             app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API E-Bis Maintenance");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API CNAM CMS 2022");
                     c.RoutePrefix = "api";
                 }
             );
