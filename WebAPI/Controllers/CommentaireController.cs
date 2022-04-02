@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
 
             if (result.Any())
             {
-                var resultDto = result.Select(entity => _mapper.Map<CommentaireDto>(entity)).ToList();
+                var resultDto = result.Select(entity => _mapper.Map<ImageDto>(entity)).ToList();
                 return Ok(resultDto);
             }
 
@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
 
         [HttpPost]
         [Route("commentaire")]
-        public IActionResult Post(CommentairePostDto commentairePostDto)
+        public IActionResult Post(StockPostDto commentairePostDto)
         {
             try
             {

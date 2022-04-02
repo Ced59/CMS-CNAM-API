@@ -14,13 +14,13 @@ namespace WebAPI.AutoMapperProfiles
 
         private void MapEntitiesToDto()
         {
-            CreateMap<Commentaire, CommentaireDto>();
+            CreateMap<Commentaire, ImageDto>();
         }
 
         private void MapDtoToEntities()
         {
-            CreateMap<CommentaireDto, Commentaire>();
-            CreateMap<CommentairePostDto, Commentaire>()
+            CreateMap<ImageDto, Commentaire>();
+            CreateMap<StockPostDto, Commentaire>()
                 .ForMember(c => c.Id, opt => opt.Ignore());
         }
     }

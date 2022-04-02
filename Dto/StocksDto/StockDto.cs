@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Dto.CommentairesDto
+namespace Dto.StocksDto
 {
-    public class StockPostDto
+    public class StocksDto
     {
+        [JsonProperty(PropertyName = "id")]
+        public int Id { get; set; }
+
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }
 

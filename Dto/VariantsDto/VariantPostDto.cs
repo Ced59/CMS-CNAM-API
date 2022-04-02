@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Dto.CommentairesDto
+namespace Dto.VariantsDto
 {
-    public class StockPostDto
+    public class VariantPostDto
     {
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }

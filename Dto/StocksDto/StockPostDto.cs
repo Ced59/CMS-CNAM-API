@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Dto.CommentairesDto
+namespace Dto.StocksDto
 {
     public class StockPostDto
     {
