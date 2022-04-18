@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Dto.StocksDto
 {
-    public class StocksDto
+    public class StockDto
     {
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }

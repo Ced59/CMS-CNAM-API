@@ -2,7 +2,9 @@
 using System.Linq;
 using AutoMapper;
 using Dto.CommentairesDto;
+using Dto.TagsDto;
 using Entities.CommentairesEntities;
+using Entities.TagsEntitie;
 using Microsoft.AspNetCore.Mvc;
 using Queries.Interface;
 
@@ -10,26 +12,26 @@ namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("api")]
-    public class CommentaireController : ControllerBase
+    public class TagController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly ICrudInterface<Commentaire> _crudService;
+        private readonly ICrudInterface<Tag> _crudService;
 
-        public CommentaireController(IMapper mapper, ICrudInterface<Commentaire> crudService)
+        public TagController(IMapper mapper, ICrudInterface<Tag> crudService)
         {
             _mapper = mapper;
             _crudService = crudService;
         }
 
         [HttpGet]
-        [Route("commentaires")]
+        [Route("tags")]
         public IActionResult GetAll()
         {
             var result = _crudService.GetAll().ToList();
 
             if (result.Any())
             {
-                var resultDto = result.Select(entity => _mapper.Map<CommentaireDto>(entity)).ToList();
+                var resultDto = result.Select(entity => _mapper.Map<TagDto>(entity)).ToList();
                 return Ok(resultDto);
             }
 
@@ -38,13 +40,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        [Route("commentaire")]
-        public IActionResult Post(CommentairePostDto commentairePostDto)
+        [Route("tag")]
+        public IActionResult Post(TagPostDto TagPostDto)
         {
             try
             {
-                var commentaire = _mapper.Map<Commentaire>(commentairePostDto);
-                _crudService.Post(commentaire);
+                var Tag = _mapper.Map<Tag>(TagPostDto);
+                _crudService.Post(Tag);
                 return Ok();
             }
             catch (Exception e)

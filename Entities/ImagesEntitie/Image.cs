@@ -6,15 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.TagsEntitie
+namespace Entities.ImagesEntitie
 {
-    public class TagEntitie
+    public class Image
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime DateAjout { get; set; }
+        public string Information { get; set; }
+        public string Url { get; set; }
+        public DateTime? DateAjout { get; set; }
         public bool IsActif { get; set; }
-        public virtual List<ProduitEntitie> Produit { get; set; }
+        public virtual List<Produit> Produits{ get; set; }
     }
 }

@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using Dto.CommentairesDto;
+using Dto.TagsDto;
 using Entities.CommentairesEntities;
+using Entities.TagsEntitie;
 
 namespace WebAPI.AutoMapperProfiles
 {
-    public class CommentaireProfile : Profile
+    public class TagProfile : Profile
     {
-        public CommentaireProfile()
+        public TagProfile()
         {
             MapDtoToEntities();
             MapEntitiesToDto();
@@ -14,12 +16,13 @@ namespace WebAPI.AutoMapperProfiles
 
         private void MapEntitiesToDto()
         {
-            CreateMap<Commentaire, CommentaireDto>();
+            CreateMap<Tag, TagDto>();
         }
+
         private void MapDtoToEntities()
         {
-            CreateMap<CommentaireDto, Commentaire>();
-            CreateMap<CommentairePostDto, Commentaire>()
+            CreateMap<TagDto, Tag>();
+            CreateMap<TagPostDto, Tag>()
                 .ForMember(c => c.Id, opt => opt.Ignore());
         }
     }

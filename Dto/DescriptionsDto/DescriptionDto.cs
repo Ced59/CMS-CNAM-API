@@ -21,12 +21,12 @@ namespace Dto.DescriptionsDto
         public string Information { get; set; }
 
         [JsonProperty(PropertyName = "dateDescription")]
-        public DateTime DateDescription { get; set; }
+        public DateTime? DateDescription { get; set; }
 
         [JsonProperty(PropertyName = "isActif")]
         public bool IsActif { get; set; }
 
         [JsonProperty(PropertyName = "idProduit")]
-        public virtual ProduitEntitie Produit { get; set; }
+        public virtual Produit Produit { get; set; }
     }
 }

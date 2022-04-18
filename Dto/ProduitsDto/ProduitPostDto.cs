@@ -21,24 +21,24 @@ namespace Dto.ProduitsDto
         public double Tva { get; set; }
 
         [JsonProperty(PropertyName = "dateAjout")]
-        public DateTime DateAjout { get; set; }
+        public DateTime? DateAjout { get; set; }
 
         [JsonProperty(PropertyName = "isActif")]
         public bool IsActif { get; set; }
 
         [JsonProperty(PropertyName = "idDescription")]
-        public virtual DescriptionEntitie Description { get; set; }
+        public virtual Description Description { get; set; }
 
         [JsonProperty(PropertyName = "idStock")]
-        public virtual StockEntitie Stock { get; set; }
+        public virtual Stock Stock { get; set; }
 
         [JsonProperty(PropertyName = "idImage")]
-        public virtual List<ImageEntitie> Images { get; set; }
+        public virtual List<Image> Images { get; set; }
 
         [JsonProperty(PropertyName = "idTag")]
-        public virtual List<TagEntitie> Tags { get; set; }
+        public virtual List<Tag> Tags { get; set; }
 
         [JsonProperty(PropertyName = "idVariant")]
-        public virtual List<VariantEntitie> Variants { get; set; }
+        public virtual List<Variant> Variants { get; set; }
     }
 }

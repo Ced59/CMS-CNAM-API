@@ -19,6 +19,12 @@ using Microsoft.EntityFrameworkCore;
 using Queries;
 using Queries.Interface;
 using WebAPI.AutoMapperProfiles;
+using Entities.VariantsEntitie;
+using Entities.TagsEntitie;
+using Entities.ProduitsEntitie;
+using Entities.ImagesEntitie;
+using Entities.StocksEntitie;
+using Entities.DescriptionsEntitie;
 
 namespace WebAPI
 {
@@ -39,6 +45,12 @@ namespace WebAPI
             {
                 config.AddProfile<ExempleProfile>();
                 config.AddProfile<CommentaireProfile>();
+                config.AddProfile<DescriptionProfile>();
+                config.AddProfile<ImageProfile>();
+                config.AddProfile<ProduitProfile>();
+                config.AddProfile<StockProfile>();
+                config.AddProfile<TagProfile>();
+                config.AddProfile<VariantProfile>();
             });
 
             mapperConfig.AssertConfigurationIsValid();
@@ -52,6 +64,12 @@ namespace WebAPI
             // Ajout des services des différents Cruds
             services.AddScoped<ICrudInterface<Exemple>, ExempleCrudQueryHandler>();
             services.AddScoped<ICrudInterface<Commentaire>, CommentaireCrudQueryHandler>();
+            services.AddScoped<ICrudInterface<Variant>, VariantCrudQueryHandler>();
+            services.AddScoped<ICrudInterface<Tag>, TagCrudQueryHandler>();
+            services.AddScoped<ICrudInterface<Produit>, ProduitCrudQueryHandler>();
+            services.AddScoped<ICrudInterface<Image>, ImageCrudQueryHandler>();
+            services.AddScoped<ICrudInterface<Stock>, StockCrudQueryHandler>();
+            services.AddScoped<ICrudInterface<Description>, DescriptionCrudQueryHandler>();
 
 
 

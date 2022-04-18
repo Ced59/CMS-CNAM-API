@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Entities.StocksEntitie
 {
-    public class StockEntitie
+    public class Stock
     {
         [Key]
-        public int id { get; set; }
-        public DateTime DateReapprovisionnement { get; set; }
-        public DateTime DateModification{ get; set; }
+        public int Id { get; set; }
+        public DateTime? DateReapprovisionnement { get; set; }
+        public DateTime? DateModification{ get; set; }
         public int Quantite { get; set; }
-        public virtual ProduitEntitie Produit{ get; set; }
+        public virtual Produit Produit{ get; set; }
 
     }
 }

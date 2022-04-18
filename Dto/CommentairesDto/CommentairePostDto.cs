@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Dto.CommentairesDto
 {
-    public class StockPostDto
+    public class CommentairePostDto
     {
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }

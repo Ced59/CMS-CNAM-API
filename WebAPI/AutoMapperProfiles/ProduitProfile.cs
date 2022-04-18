@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using Dto.CommentairesDto;
+using Dto.ProduitsDto;
 using Entities.CommentairesEntities;
+using Entities.ProduitsEntitie;
 
 namespace WebAPI.AutoMapperProfiles
 {
-    public class CommentaireProfile : Profile
+    public class ProduitProfile : Profile
     {
-        public CommentaireProfile()
+        public ProduitProfile()
         {
             MapDtoToEntities();
             MapEntitiesToDto();
@@ -14,12 +16,13 @@ namespace WebAPI.AutoMapperProfiles
 
         private void MapEntitiesToDto()
         {
-            CreateMap<Commentaire, CommentaireDto>();
+            CreateMap<Produit, ProduitDto>();
         }
+
         private void MapDtoToEntities()
         {
-            CreateMap<CommentaireDto, Commentaire>();
-            CreateMap<CommentairePostDto, Commentaire>()
+            CreateMap<ProduitDto, Produit>();
+            CreateMap<ProduitPostDto, Produit>()
                 .ForMember(c => c.Id, opt => opt.Ignore());
         }
     }

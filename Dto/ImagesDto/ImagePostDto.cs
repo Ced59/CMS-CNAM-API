@@ -17,12 +17,12 @@ namespace Dto.ImagesDto
         public string Url { get; set; }
 
         [JsonProperty(PropertyName = "dateAjout")]
-        public DateTime DateAjout { get; set; }
+        public DateTime? DateAjout { get; set; }
 
         [JsonProperty(PropertyName = "isActif")]
         public bool IsActif { get; set; }
 
         [JsonProperty(PropertyName = "idProduits")]
-        public virtual List<ProduitEntitie> Produits { get; set; }
+        public virtual List<Produit> Produits { get; set; }
     }
 }

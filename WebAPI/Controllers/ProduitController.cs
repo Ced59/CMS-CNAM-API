@@ -2,7 +2,9 @@
 using System.Linq;
 using AutoMapper;
 using Dto.CommentairesDto;
+using Dto.ProduitsDto;
 using Entities.CommentairesEntities;
+using Entities.ProduitsEntitie;
 using Microsoft.AspNetCore.Mvc;
 using Queries.Interface;
 
@@ -10,26 +12,26 @@ namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("api")]
-    public class CommentaireController : ControllerBase
+    public class ProduitController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly ICrudInterface<Commentaire> _crudService;
+        private readonly ICrudInterface<Produit> _crudService;
 
-        public CommentaireController(IMapper mapper, ICrudInterface<Commentaire> crudService)
+        public ProduitController(IMapper mapper, ICrudInterface<Produit> crudService)
         {
             _mapper = mapper;
             _crudService = crudService;
         }
 
         [HttpGet]
-        [Route("commentaires")]
+        [Route("produits")]
         public IActionResult GetAll()
         {
             var result = _crudService.GetAll().ToList();
 
             if (result.Any())
             {
-                var resultDto = result.Select(entity => _mapper.Map<CommentaireDto>(entity)).ToList();
+                var resultDto = result.Select(entity => _mapper.Map<ProduitDto>(entity)).ToList();
                 return Ok(resultDto);
             }
 
@@ -38,13 +40,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        [Route("commentaire")]
-        public IActionResult Post(CommentairePostDto commentairePostDto)
+        [Route("produit")]
+        public IActionResult Post(ProduitPostDto ProduitPostDto)
         {
             try
             {
-                var commentaire = _mapper.Map<Commentaire>(commentairePostDto);
-                _crudService.Post(commentaire);
+                var Produit = _mapper.Map<Produit>(ProduitPostDto);
+                _crudService.Post(Produit);
                 return Ok();
             }
             catch (Exception e)

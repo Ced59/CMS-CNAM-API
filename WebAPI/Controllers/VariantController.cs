@@ -2,7 +2,9 @@
 using System.Linq;
 using AutoMapper;
 using Dto.CommentairesDto;
+using Dto.VariantsDto;
 using Entities.CommentairesEntities;
+using Entities.VariantsEntitie;
 using Microsoft.AspNetCore.Mvc;
 using Queries.Interface;
 
@@ -10,26 +12,26 @@ namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("api")]
-    public class CommentaireController : ControllerBase
+    public class VariantController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly ICrudInterface<Commentaire> _crudService;
+        private readonly ICrudInterface<Variant> _crudService;
 
-        public CommentaireController(IMapper mapper, ICrudInterface<Commentaire> crudService)
+        public VariantController(IMapper mapper, ICrudInterface<Variant> crudService)
         {
             _mapper = mapper;
             _crudService = crudService;
         }
 
         [HttpGet]
-        [Route("commentaires")]
+        [Route("variants")]
         public IActionResult GetAll()
         {
             var result = _crudService.GetAll().ToList();
 
             if (result.Any())
             {
-                var resultDto = result.Select(entity => _mapper.Map<CommentaireDto>(entity)).ToList();
+                var resultDto = result.Select(entity => _mapper.Map<VariantDto>(entity)).ToList();
                 return Ok(resultDto);
             }
 
@@ -38,13 +40,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        [Route("commentaire")]
-        public IActionResult Post(CommentairePostDto commentairePostDto)
+        [Route("variant")]
+        public IActionResult Post(VariantPostDto VariantPostDto)
         {
             try
             {
-                var commentaire = _mapper.Map<Commentaire>(commentairePostDto);
-                _crudService.Post(commentaire);
+                var variant = _mapper.Map<Variant>(VariantPostDto);
+                _crudService.Post(variant);
                 return Ok();
             }
             catch (Exception e)
