@@ -15,7 +15,6 @@ namespace Entities.StocksEntitie
         public DateTime? DateReapprovisionnement { get; set; }
         public DateTime? DateModification{ get; set; }
         public int Quantite { get; set; }
-        public virtual Produit Produit{ get; set; }
 
     }
 }

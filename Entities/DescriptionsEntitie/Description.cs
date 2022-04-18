@@ -16,6 +16,5 @@ namespace Entities.DescriptionsEntitie
         public string Information { get; set; }
         public DateTime? DateDescription { get; set; }
         public bool IsActif { get; set; }
-        public virtual Produit Produit{ get; set; }
     }
 }

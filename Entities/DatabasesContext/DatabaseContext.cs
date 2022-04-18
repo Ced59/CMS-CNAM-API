@@ -1,5 +1,11 @@
 ﻿using Entities.CommentairesEntities;
+using Entities.DescriptionsEntitie;
 using Entities.ExemplesEntitie;
+using Entities.ImagesEntitie;
+using Entities.ProduitsEntitie;
+using Entities.StocksEntitie;
+using Entities.TagsEntitie;
+using Entities.VariantsEntitie;
 using Microsoft.EntityFrameworkCore;
 
 namespace Entities.DatabasesContext
@@ -17,6 +23,12 @@ namespace Entities.DatabasesContext
         {
             modelBuilder.Entity<Exemple>().ToTable("Exemples");
             modelBuilder.Entity<Commentaire>().ToTable("Commentaires");
+            modelBuilder.Entity<Description>().ToTable("Descriptions");
+            modelBuilder.Entity<Image>().ToTable("Images");
+            modelBuilder.Entity<Produit>().ToTable("Produits");
+            modelBuilder.Entity<Stock>().ToTable("Stocks");
+            modelBuilder.Entity<Tag>().ToTable("Tags");
+            modelBuilder.Entity<Variant>().ToTable("Variants");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

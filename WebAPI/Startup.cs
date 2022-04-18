@@ -53,7 +53,7 @@ namespace WebAPI
                 config.AddProfile<VariantProfile>();
             });
 
-            mapperConfig.AssertConfigurationIsValid();
+             mapperConfig.AssertConfigurationIsValid();
 
             services.AddAutoMapper(typeof(Startup));
 
