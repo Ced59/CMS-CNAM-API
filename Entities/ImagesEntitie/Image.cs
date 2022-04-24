@@ -17,6 +17,6 @@ namespace Entities.ImagesEntitie
         public string Url { get; set; }
         public DateTime? DateAjout { get; set; }
         public bool IsActif { get; set; }
-        public virtual List<Produit> Produits{ get; set; }
+        public virtual Produit Produit { get; set; }
     }
 }

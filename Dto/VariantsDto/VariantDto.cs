@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Dto.ProduitsDto;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Dto.VariantsDto
 {
@@ -7,10 +9,13 @@ namespace Dto.VariantsDto
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
 
-        [JsonProperty(PropertyName = "title")]
-        public string Title { get; set; }
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
 
-        [JsonProperty(PropertyName = "content")]
-        public string Content { get; set; }
+        [JsonProperty(PropertyName = "description")]
+        public string Descriptif { get; set; }
+
+        [JsonProperty(PropertyName = "idProduit")]
+        public List<int> Produits { get; set; }
     }
 }

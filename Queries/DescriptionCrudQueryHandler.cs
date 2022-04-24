@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Entities.CommentairesEntities;
 using Entities.DatabasesContext;
 using Entities.DescriptionsEntitie;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Queries.Interface;
 
@@ -21,12 +22,35 @@ namespace Queries
 
         public IEnumerable<Description> GetAll()
         {
-            throw new NotImplementedException();
+            List<Description> Descriptions = null;
+            using (_db)
+            {
+                Descriptions = new List<Description>();
+                Descriptions = _db.Descriptions.ToList();
+            }
+            return Descriptions;
         }
 
         public Description GetById(int id)
         {
-            throw new NotImplementedException();
+            Description Descriptions = null;
+            using (_db)
+            {
+                Descriptions = new Description();
+                Descriptions = _db.Descriptions.FirstOrDefault(d => d.IsActif && d.Id == id);
+            }
+            return Descriptions;
+        }
+
+        public Description GetByProductId(int idProduct)
+        {
+            Description Descriptions = null;
+            using (_db)
+            {
+                Descriptions = new Description();
+                Descriptions = _db.Descriptions.FirstOrDefault(d=>d.IsActif && d.Produit.IsActif && d.Produit.Id == idProduct);
+            }
+            return Descriptions;
         }
 
         public void Post(Description entity)

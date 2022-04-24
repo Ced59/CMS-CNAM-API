@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Entities.DescriptionsEntitie;
-using Entities.ImagesEntitie;
-using Entities.StocksEntitie;
-using Entities.TagsEntitie;
-using Entities.VariantsEntitie;
+using Dto.DescriptionsDto;
+using Dto.ImagesDto;
+using Dto.StocksDto;
+using Dto.TagsDto;
+using Dto.VariantsDto;
 using Newtonsoft.Json;
 
 namespace Dto.ProduitsDto
@@ -26,19 +26,16 @@ namespace Dto.ProduitsDto
         [JsonProperty(PropertyName = "isActif")]
         public bool IsActif { get; set; }
 
-        [JsonProperty(PropertyName = "idDescription")]
-        public virtual Description Description { get; set; }
-
         [JsonProperty(PropertyName = "idStock")]
-        public virtual Stock Stock { get; set; }
+        public virtual StockPostDto Stock { get; set; }
 
         [JsonProperty(PropertyName = "idImage")]
-        public virtual List<Image> Images { get; set; }
+        public virtual List<ImagePostDto> Images { get; set; }
 
         [JsonProperty(PropertyName = "idTag")]
-        public virtual List<Tag> Tags { get; set; }
+        public virtual List<TagPostDto> Tags { get; set; }
 
         [JsonProperty(PropertyName = "idVariant")]
-        public virtual List<Variant> Variants { get; set; }
+        public virtual List<VariantPostDto> Variants { get; set; }
     }
 }

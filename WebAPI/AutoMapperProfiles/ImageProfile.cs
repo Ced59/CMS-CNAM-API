@@ -16,14 +16,17 @@ namespace WebAPI.AutoMapperProfiles
 
         private void MapEntitiesToDto()
         {
-            CreateMap<Image, ImageDto>();
+            CreateMap<Image, ImageDto>()
+                .ForMember(c => c.IdProduit, opt => opt.Ignore());
         }
 
         private void MapDtoToEntities()
         {
-            CreateMap<ImageDto, Image>();
+            CreateMap<ImageDto, Image>()
+                .ForMember(c => c.Produit, opt => opt.Ignore());
             CreateMap<ImagePostDto, Image>()
-                .ForMember(c => c.Id, opt => opt.Ignore());
+                .ForMember(c => c.Id, opt => opt.Ignore())
+                .ForMember(c => c.Produit, opt => opt.Ignore());
         }
     }
 }

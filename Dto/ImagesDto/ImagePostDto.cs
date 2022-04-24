@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Dto.ProduitsDto;
 using Entities.ProduitsEntitie;
 using Newtonsoft.Json;
 
@@ -22,7 +23,7 @@ namespace Dto.ImagesDto
         [JsonProperty(PropertyName = "isActif")]
         public bool IsActif { get; set; }
 
-        [JsonProperty(PropertyName = "idProduits")]
-        public virtual List<Produit> Produits { get; set; }
+        [JsonProperty(PropertyName = "idProduit")]
+        public int IdProduit { get; set; }
     }
 }

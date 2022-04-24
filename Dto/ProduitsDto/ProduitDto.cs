@@ -4,6 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dto.DescriptionsDto;
+using Dto.ImagesDto;
+using Dto.StocksDto;
+using Dto.TagsDto;
+using Dto.VariantsDto;
 using Entities.DescriptionsEntitie;
 using Entities.ImagesEntitie;
 using Entities.StocksEntitie;
@@ -33,19 +38,13 @@ namespace Dto.ProduitsDto
         [JsonProperty(PropertyName = "isActif")]
         public bool IsActif { get; set; }
         
-        [JsonProperty(PropertyName = "idDescription")]
-        public virtual Description Description { get; set; }
+        [JsonProperty(PropertyName = "images")]
+        public virtual List<ImageDto> Images { get; set; }
         
-        [JsonProperty(PropertyName = "idStock")]
-        public virtual Stock Stock { get; set; }
+        [JsonProperty(PropertyName = "tags")]
+        public virtual List<TagDto> Tags { get; set; }
         
-        [JsonProperty(PropertyName = "idImage")]
-        public virtual List<Image> Images { get; set; }
-        
-        [JsonProperty(PropertyName = "idTag")]
-        public virtual List<Tag> Tags { get; set; }
-        
-        [JsonProperty(PropertyName = "idVariant")]
-        public virtual List<Variant> Variants { get; set; }
+        [JsonProperty(PropertyName = "variants")]
+        public virtual List<VariantDto> Variants { get; set; }
     }
 }

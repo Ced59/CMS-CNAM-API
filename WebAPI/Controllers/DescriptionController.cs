@@ -6,16 +6,18 @@ using Dto.DescriptionsDto;
 using Entities.CommentairesEntities;
 using Entities.DescriptionsEntitie;
 using Microsoft.AspNetCore.Mvc;
+using Queries;
 using Queries.Interface;
 
 namespace WebAPI.Controllers
 {
     [ApiController]
-    [Route("api")]
+    [Route("api/[controller]")]
     public class DescriptionController : ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly ICrudInterface<Description> _crudService;
+        private  DescriptionCrudQueryHandler _description = new DescriptionCrudQueryHandler();
 
         public DescriptionController(IMapper mapper, ICrudInterface<Description> crudService)
         {
@@ -24,7 +26,6 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("descriptions")]
         public IActionResult GetAll()
         {
             var result = _crudService.GetAll().ToList();
@@ -39,8 +40,36 @@ namespace WebAPI.Controllers
 
         }
 
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult GetDescription(int id)
+        {
+            var result = _crudService.GetById(id);
+
+            if (result!= null)
+            {
+                return Ok(result);
+            }
+
+            return StatusCode(404);
+        }
+
+        [HttpGet]
+        [Route("Produit/{idProduct}")]
+        public IActionResult GetDescriptionByProduct(int idProduct)
+        {
+            
+            var result = _description.GetByProductId(idProduct);
+
+            if (result != null)
+            {
+                return Ok(result);
+            }
+
+            return StatusCode(404);
+        }
+
         [HttpPost]
-        [Route("description")]
         public IActionResult Post(DescriptionPostDto DescriptionPostDto)
         {
             try

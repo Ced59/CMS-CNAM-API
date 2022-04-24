@@ -14,6 +14,12 @@ namespace Entities.DatabasesContext
     {
         public DbSet<Exemple> Exemples { get; set; }
         public DbSet<Commentaire> Commentaires { get; set; }
+        public DbSet<Description> Descriptions { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Produit> Produits { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<Variant> Variants { get; set; }
 
         public DatabaseContext() : base() {}
         
