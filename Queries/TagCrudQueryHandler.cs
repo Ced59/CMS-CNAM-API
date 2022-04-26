@@ -54,7 +54,11 @@ namespace Queries
 
         public void Put(Tag entity)
         {
-            throw new NotImplementedException();
+            using (_db)
+            {
+                _db.Tags.Update(entity);
+                _db.SaveChanges();
+            }
         }
     }
 }

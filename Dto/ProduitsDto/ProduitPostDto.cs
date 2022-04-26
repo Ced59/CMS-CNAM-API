@@ -26,8 +26,11 @@ namespace Dto.ProduitsDto
         [JsonProperty(PropertyName = "isActif")]
         public bool IsActif { get; set; }
 
-        [JsonProperty(PropertyName = "idStock")]
-        public virtual StockPostDto Stock { get; set; }
+        [JsonProperty(PropertyName = "description")]
+        public DescriptionPostDto Description { get; set; }
+
+        [JsonProperty(PropertyName = "stock")]
+        public StockPostDto Stock { get; set; }
 
         [JsonProperty(PropertyName = "idImage")]
         public virtual List<ImagePostDto> Images { get; set; }

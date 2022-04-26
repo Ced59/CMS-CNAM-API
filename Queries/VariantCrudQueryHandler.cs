@@ -54,7 +54,11 @@ namespace Queries
 
         public void Put(Variant entity)
         {
-            throw new NotImplementedException();
+            using (_db)
+            {
+                _db.Variants.Update(entity);
+                _db.SaveChanges();
+            }
         }
     }
 }

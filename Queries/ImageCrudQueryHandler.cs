@@ -54,7 +54,11 @@ namespace Queries
 
         public void Put(Image entity)
         {
-            throw new NotImplementedException();
+            using (_db)
+            {
+                _db.Images.Update(entity);
+                _db.SaveChanges();
+            }
         }
     }
 }

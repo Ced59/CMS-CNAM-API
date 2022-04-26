@@ -54,7 +54,11 @@ namespace Queries
 
         public void Put(Produit entity)
         {
-            throw new NotImplementedException();
+            using (_db)
+            {
+                _db.Produits.Update(entity);
+                _db.SaveChanges();
+            }
         }
     }
 }

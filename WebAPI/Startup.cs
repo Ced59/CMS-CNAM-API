@@ -68,8 +68,6 @@ namespace WebAPI
             services.AddScoped<ICrudInterface<Tag>, TagCrudQueryHandler>();
             services.AddScoped<ICrudInterface<Produit>, ProduitCrudQueryHandler>();
             services.AddScoped<ICrudInterface<Image>, ImageCrudQueryHandler>();
-            services.AddScoped<ICrudInterface<Stock>, StockCrudQueryHandler>();
-            services.AddScoped<ICrudInterface<Description>, DescriptionCrudQueryHandler>();
 
 
 
