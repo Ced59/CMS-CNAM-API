@@ -40,8 +40,7 @@ namespace WebAPI.Controllers
 
         }
 
-        [HttpGet]
-        [Route("{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetDescription(int id)
         {
             var result = _crudService.GetById(id);
@@ -54,20 +53,20 @@ namespace WebAPI.Controllers
             return StatusCode(404);
         }
 
-        [HttpGet]
-        [Route("Produit/{idProduct}")]
-        public IActionResult GetDescriptionByProduct(int idProduct)
-        {
+        //[HttpGet]
+        //[Route("Produit/{idProduct}")]
+        //public IActionResult GetDescriptionByProduct(int idProduct)
+        //{
             
-            var result = _description.GetByProductId(idProduct);
+        //    var result = _description.GetByProductId(idProduct);
 
-            if (result != null)
-            {
-                return Ok(result);
-            }
+        //    if (result != null)
+        //    {
+        //        return Ok(result);
+        //    }
 
-            return StatusCode(404);
-        }
+        //    return StatusCode(404);
+        //}
 
         [HttpPost]
         public IActionResult Post(DescriptionPostDto DescriptionPostDto)

@@ -21,17 +21,35 @@ namespace Queries
 
         public IEnumerable<Stock> GetAll()
         {
-            throw new NotImplementedException();
+            List<Stock> Stocks = null;
+
+            using (_db)
+            {
+                Stocks = new List<Stock>();
+                Stocks = _db.Stocks.ToList();
+            }
+            return Stocks;
         }
 
         public Stock GetById(int id)
         {
-            throw new NotImplementedException();
+            Stock Stock = null;
+            using (_db)
+            {
+                Stock = new Stock();
+                Stock = _db.Stocks.FirstOrDefault(d => d.Id == id);
+            }
+            return Stock;
         }
 
         public void Post(Stock entity)
         {
-            throw new NotImplementedException();
+            if (entity == null) throw new ArgumentNullException();
+            using (_db)
+            {
+                _db.Stocks.Add(entity);
+                _db.SaveChanges();
+            }
         }
 
         public void Put(Stock entity)

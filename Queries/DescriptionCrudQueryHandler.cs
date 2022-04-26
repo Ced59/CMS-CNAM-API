@@ -55,7 +55,12 @@ namespace Queries
 
         public void Post(Description entity)
         {
-            throw new NotImplementedException();
+            if (entity == null) throw new ArgumentNullException();
+            using (_db)
+            {
+                _db.Descriptions.Add(entity);
+                _db.SaveChanges();
+            }
         }
 
         public void Put(Description entity)

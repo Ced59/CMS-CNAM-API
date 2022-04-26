@@ -21,17 +21,35 @@ namespace Queries
 
         public IEnumerable<Variant> GetAll()
         {
-            throw new NotImplementedException();
+            List<Variant> Variants = null;
+
+            using (_db)
+            {
+                Variants = new List<Variant>();
+                Variants = _db.Variants.ToList();
+            }
+            return Variants;
         }
 
         public Variant GetById(int id)
         {
-            throw new NotImplementedException();
+            Variant Variant = null;
+            using (_db)
+            {
+                Variant = new Variant();
+                Variant = _db.Variants.FirstOrDefault(d => d.IsActif && d.Id == id);
+            }
+            return Variant;
         }
 
         public void Post(Variant entity)
         {
-            throw new NotImplementedException();
+            if (entity == null) throw new ArgumentNullException();
+            using (_db)
+            {
+                _db.Variants.Add(entity);
+                _db.SaveChanges();
+            }
         }
 
         public void Put(Variant entity)

@@ -11,7 +11,7 @@ using Queries.Interface;
 namespace WebAPI.Controllers
 {
     [ApiController]
-    [Route("api")]
+    [Route("api/[controller]")]
     public class StockController : ControllerBase
     {
         private readonly IMapper _mapper;
@@ -24,7 +24,6 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("stocks")]
         public IActionResult GetAll()
         {
             var result = _crudService.GetAll().ToList();
@@ -39,8 +38,20 @@ namespace WebAPI.Controllers
 
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetStockById(int id)
+        {
+            var result = _crudService.GetById(id);
+
+            if (result != null)
+            {
+                return Ok(result);
+            }
+
+            return StatusCode(404);
+        }
+
         [HttpPost]
-        [Route("stock")]
         public IActionResult Post(StockPostDto StockPostDto)
         {
             try
@@ -54,6 +65,7 @@ namespace WebAPI.Controllers
                 return StatusCode(500);
             }
         }
+
 
     }
 }

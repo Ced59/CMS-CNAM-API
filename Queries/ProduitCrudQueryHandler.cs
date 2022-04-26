@@ -21,17 +21,35 @@ namespace Queries
 
         public IEnumerable<Produit> GetAll()
         {
-            throw new NotImplementedException();
+            List<Produit> Produits = null;
+
+            using (_db)
+            {
+                Produits = new List<Produit>();
+                Produits = _db.Produits.ToList();
+            }
+            return Produits;
         }
 
         public Produit GetById(int id)
         {
-            throw new NotImplementedException();
+            Produit Produit = null;
+            using (_db)
+            {
+                Produit = new Produit();
+                Produit = _db.Produits.FirstOrDefault(d => d.IsActif && d.Id == id);
+            }
+            return Produit;
         }
 
         public void Post(Produit entity)
         {
-            throw new NotImplementedException();
+            if (entity == null) throw new ArgumentNullException();
+            using (_db)
+            {
+                _db.Produits.Add(entity);
+                _db.SaveChanges();
+            }
         }
 
         public void Put(Produit entity)

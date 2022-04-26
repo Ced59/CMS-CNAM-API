@@ -21,17 +21,35 @@ namespace Queries
 
         public IEnumerable<Tag> GetAll()
         {
-            throw new NotImplementedException();
+            List<Tag> Tags = null;
+
+            using (_db)
+            {
+                Tags = new List<Tag>();
+                Tags = _db.Tags.ToList();
+            }
+            return Tags;
         }
 
         public Tag GetById(int id)
         {
-            throw new NotImplementedException();
+            Tag Tag = null;
+            using (_db)
+            {
+                Tag = new Tag();
+                Tag = _db.Tags.FirstOrDefault(d => d.IsActif && d.Id == id);
+            }
+            return Tag;
         }
 
         public void Post(Tag entity)
         {
-            throw new NotImplementedException();
+            if (entity == null) throw new ArgumentNullException();
+            using (_db)
+            {
+                _db.Tags.Add(entity);
+                _db.SaveChanges();
+            }
         }
 
         public void Put(Tag entity)
