@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetVariantById(int id)
+        public IActionResult GetVariantById(Guid id)
         {
             var result = _crudService.GetById(id);
 

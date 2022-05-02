@@ -12,7 +12,7 @@ namespace Entities.ProduitsEntitie
     public class Produit
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public float Price { get; set; }
         public double Tva { get; set; }

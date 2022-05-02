@@ -13,7 +13,7 @@ namespace Dto.ImagesDto
     public class ImageDto
     {
         [JsonProperty(PropertyName = "id")]
-        public int id { get; set; }
+        public Guid id { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
@@ -31,6 +31,6 @@ namespace Dto.ImagesDto
         public bool IsActif { get; set; }
 
         [JsonProperty(PropertyName = "idProduit")]
-        public int IdProduit { get; set; }
+        public Guid IdProduit { get; set; }
     }
 }

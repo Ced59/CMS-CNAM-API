@@ -17,6 +17,6 @@ namespace Dto.VariantsDto
         public string Descriptif { get; set; }
 
         [JsonProperty(PropertyName = "idProduit")]
-        public List<int> Produits { get; set; }
+        public List<Guid> Produits { get; set; }
     }
 }

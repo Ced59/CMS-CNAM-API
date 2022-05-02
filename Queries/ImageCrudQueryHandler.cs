@@ -19,6 +19,11 @@ namespace Queries
             _db = new DatabaseContext();
         }
 
+        public void Archive(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Image> GetAll()
         {
             List<Image> Images = null;
@@ -31,7 +36,7 @@ namespace Queries
             return Images;
         }
 
-        public Image GetById(int id)
+        public Image GetById(Guid id)
         {
             Image Image = null;
             using (_db)

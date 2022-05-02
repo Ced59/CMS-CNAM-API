@@ -19,8 +19,11 @@ namespace WebAPI.AutoMapperProfiles
 
         private void MapDtoToEntities()
         {
-            CreateMap<ExempleDto, Exemple>();
+            CreateMap<ExempleDto, Exemple>()
+                .ForMember(c => c.IsArchived, opt => opt.Ignore())
+                ;
             CreateMap<ExemplePostDto, Exemple>()
+                .ForMember(c => c.IsArchived, opt => opt.Ignore())
                 .ForMember(x => x.Id, opt => opt.Ignore());
         }
     }
