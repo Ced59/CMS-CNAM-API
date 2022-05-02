@@ -11,7 +11,7 @@ namespace Entities.StocksEntitie
     public class Stock
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public DateTime? DateReapprovisionnement { get; set; }
         public DateTime? DateModification{ get; set; }
         public int Quantite { get; set; }

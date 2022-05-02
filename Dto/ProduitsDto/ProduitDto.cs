@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dto.CommentairesDto;
 using Dto.DescriptionsDto;
 using Dto.ImagesDto;
 using Dto.StocksDto;
@@ -21,7 +22,7 @@ namespace Dto.ProduitsDto
     public class ProduitDto
     {
         [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
@@ -41,9 +42,6 @@ namespace Dto.ProduitsDto
         [JsonProperty(PropertyName = "description")]
         public DescriptionDto Description { get; set; }
 
-        [JsonProperty(PropertyName = "stock")]
-        public StockDto Stock { get; set; }
-
         [JsonProperty(PropertyName = "images")]
         public virtual List<ImageDto> Images { get; set; }
         
@@ -52,5 +50,8 @@ namespace Dto.ProduitsDto
         
         [JsonProperty(PropertyName = "variants")]
         public virtual List<VariantDto> Variants { get; set; }
+
+        [JsonProperty(PropertyName = "commentaires")]
+        public virtual List<CommentaireDto> Commentaires { get; set; }
     }
 }

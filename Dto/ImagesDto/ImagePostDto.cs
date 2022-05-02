@@ -24,6 +24,6 @@ namespace Dto.ImagesDto
         public bool IsActif { get; set; }
 
         [JsonProperty(PropertyName = "idProduit")]
-        public int IdProduit { get; set; }
+        public Guid IdProduit { get; set; }
     }
 }

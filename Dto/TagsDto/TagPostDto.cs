@@ -14,6 +14,6 @@ namespace Dto.TagsDto
         public string Name { get; set; }
 
         [JsonProperty(PropertyName = "idProduit")]
-        public List<int> IdProduits { get; set; }
+        public List<Guid> IdProduits { get; set; }
     }
 }

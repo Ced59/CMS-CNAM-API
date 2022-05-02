@@ -2,7 +2,7 @@
 
 namespace Entities.Migrations
 {
-    public partial class deleteDescriptionEtStock : Migration
+    public partial class addCommentsInProducts : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

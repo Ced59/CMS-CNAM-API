@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetImageById(int id)
+        public IActionResult GetImageById(Guid id)
         {
             var result = _crudService.GetById(id);
 

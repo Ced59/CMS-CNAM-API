@@ -5,6 +5,7 @@ using Entities.ImagesEntitie;
 using Entities.ProduitsEntitie;
 using Entities.StocksEntitie;
 using Entities.TagsEntitie;
+using Entities.UsersEntities;
 using Entities.VariantsEntitie;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +21,7 @@ namespace Entities.DatabasesContext
         public DbSet<Stock> Stocks { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Variant> Variants { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public DatabaseContext() : base() {}
         
@@ -35,6 +37,7 @@ namespace Entities.DatabasesContext
             modelBuilder.Entity<Stock>().ToTable("Stocks");
             modelBuilder.Entity<Tag>().ToTable("Tags");
             modelBuilder.Entity<Variant>().ToTable("Variants");
+            modelBuilder.Entity<User>().ToTable("Users");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

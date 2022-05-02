@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Entities.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220426184909_deleteDescriptionEtStock")]
-    partial class deleteDescriptionEtStock
+    [Migration("20220502124409_addCommentsInProducts")]
+    partial class addCommentsInProducts
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,16 +23,27 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("Entities.CommentairesEntities.Commentaire", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsArchived")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Note")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ProduitId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -41,10 +52,9 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("Entities.DescriptionsEntitie.Description", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DateDescription")
                         .HasColumnType("datetime2");
@@ -58,25 +68,22 @@ namespace Entities.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProduitId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProduitId");
 
                     b.ToTable("Descriptions");
                 });
 
             modelBuilder.Entity("Entities.ExemplesEntitie.Exemple", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsArchived")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -88,10 +95,9 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("Entities.ImagesEntitie.Image", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DateAjout")
                         .HasColumnType("datetime2");
@@ -105,8 +111,8 @@ namespace Entities.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProduitId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ProduitId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
@@ -120,13 +126,15 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("Entities.ProduitsEntitie.Produit", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DateAjout")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DescriptionId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsActif")
                         .HasColumnType("bit");
@@ -142,15 +150,16 @@ namespace Entities.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DescriptionId");
+
                     b.ToTable("Produits");
                 });
 
             modelBuilder.Entity("Entities.StocksEntitie.Stock", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DateModification")
                         .HasColumnType("datetime2");
@@ -158,8 +167,8 @@ namespace Entities.Migrations
                     b.Property<DateTime?>("DateReapprovisionnement")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ProduitId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ProduitId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Quantite")
                         .HasColumnType("int");
@@ -173,10 +182,9 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("Entities.TagsEntitie.Tag", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DateAjout")
                         .HasColumnType("datetime2");
@@ -192,12 +200,46 @@ namespace Entities.Migrations
                     b.ToTable("Tags");
                 });
 
+            modelBuilder.Entity("Entities.UsersEntities.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Civilite")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsArchived")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Login")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nom")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Prenom")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UrlPhoto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("Entities.VariantsEntitie.Variant", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DateAjout")
                         .HasColumnType("datetime2");
@@ -218,11 +260,11 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("ProduitTag", b =>
                 {
-                    b.Property<int>("ProduitsId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ProduitsId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("TagsId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TagsId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ProduitsId", "TagsId");
 
@@ -233,26 +275,17 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("ProduitVariant", b =>
                 {
-                    b.Property<int>("ProduitsId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ProduitsId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("VariantsId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("VariantsId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ProduitsId", "VariantsId");
 
                     b.HasIndex("VariantsId");
 
                     b.ToTable("ProduitVariant");
-                });
-
-            modelBuilder.Entity("Entities.DescriptionsEntitie.Description", b =>
-                {
-                    b.HasOne("Entities.ProduitsEntitie.Produit", "Produit")
-                        .WithMany()
-                        .HasForeignKey("ProduitId");
-
-                    b.Navigation("Produit");
                 });
 
             modelBuilder.Entity("Entities.ImagesEntitie.Image", b =>
@@ -262,6 +295,15 @@ namespace Entities.Migrations
                         .HasForeignKey("ProduitId");
 
                     b.Navigation("Produit");
+                });
+
+            modelBuilder.Entity("Entities.ProduitsEntitie.Produit", b =>
+                {
+                    b.HasOne("Entities.DescriptionsEntitie.Description", "Description")
+                        .WithMany()
+                        .HasForeignKey("DescriptionId");
+
+                    b.Navigation("Description");
                 });
 
             modelBuilder.Entity("Entities.StocksEntitie.Stock", b =>

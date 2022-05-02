@@ -11,12 +11,21 @@ namespace Dto.CommentairesDto
     public class CommentaireDto
     {
         [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }
 
         [JsonProperty(PropertyName = "content")]
         public string Content { get; set; }
+
+        [JsonProperty(PropertyName = "note")]
+        public int Note { get; set; }
+
+        [JsonProperty(PropertyName = "idProduit")]
+        public Guid ProduitId { get; set; }
+
+        [JsonProperty(PropertyName = "idUser")]
+        public Guid UserId { get; set; }
     }
 }

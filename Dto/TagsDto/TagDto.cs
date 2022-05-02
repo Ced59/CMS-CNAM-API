@@ -12,12 +12,12 @@ namespace Dto.TagsDto
     public class TagDto
     {
         [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
         [JsonProperty(PropertyName = "idProduit")]
-        public  List<int> IdProduits { get; set; }
+        public  List<Guid> IdProduits { get; set; }
     }
 }

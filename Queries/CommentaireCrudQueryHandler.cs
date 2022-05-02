@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Entities.CommentairesEntities;
 using Entities.DatabasesContext;
+using Entities.UsersEntities;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Queries.Interface;
 
@@ -24,9 +25,9 @@ namespace Queries
             _db.SaveChanges();
         }
 
-        public Commentaire GetById(int id)
+        public Commentaire GetById(Guid id)
         {
-            return _db.Commentaires.FirstOrDefault(e => e.Id == id);
+            return _db.Commentaires.FirstOrDefault(c => c.Id == id);
         }
 
         public IEnumerable<Commentaire> GetAll()
@@ -40,5 +41,12 @@ namespace Queries
             _db.SaveChanges();
         }
 
+        public void Archive(Guid id)
+        {
+            Commentaire commentaire = _db.Commentaires.FirstOrDefault(c => c.Id == id);
+            commentaire.IsArchived = true;
+            _db.Commentaires.Update(commentaire);
+            _db.SaveChanges();
+        }
     }
 }

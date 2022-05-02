@@ -19,6 +19,11 @@ namespace Queries
             _db = new DatabaseContext();
         }
 
+        public void Archive(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Variant> GetAll()
         {
             List<Variant> Variants = null;
@@ -31,7 +36,7 @@ namespace Queries
             return Variants;
         }
 
-        public Variant GetById(int id)
+        public Variant GetById(Guid id)
         {
             Variant Variant = null;
             using (_db)

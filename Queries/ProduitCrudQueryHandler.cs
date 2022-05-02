@@ -19,6 +19,11 @@ namespace Queries
             _db = new DatabaseContext();
         }
 
+        public void Archive(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Produit> GetAll()
         {
             List<Produit> Produits = null;
@@ -31,7 +36,7 @@ namespace Queries
             return Produits;
         }
 
-        public Produit GetById(int id)
+        public Produit GetById(Guid id)
         {
             Produit Produit = null;
             using (_db)

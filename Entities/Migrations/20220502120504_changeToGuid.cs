@@ -3,16 +3,31 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Entities.Migrations
 {
-    public partial class ProdutsFullEntitesMigration2 : Migration
+    public partial class changeToGuid : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Commentaires",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false),
+                    ProduitId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Commentaires", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Descriptions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateDescription = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -24,43 +39,24 @@ namespace Entities.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Images",
+                name: "Exemples",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateAjout = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActif = table.Column<bool>(type: "bit", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Images", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Stocks",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DateReapprovisionnement = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DateModification = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Quantite = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Stocks", x => x.Id);
+                    table.PrimaryKey("PK_Exemples", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Tags",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateAjout = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActif = table.Column<bool>(type: "bit", nullable: false)
@@ -71,11 +67,29 @@ namespace Entities.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nom = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Prenom = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Civilite = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Login = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UrlPhoto = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Variants",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Descriptif = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateAjout = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -90,15 +104,13 @@ namespace Entities.Migrations
                 name: "Produits",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<float>(type: "real", nullable: false),
                     Tva = table.Column<double>(type: "float", nullable: false),
                     DateAjout = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActif = table.Column<bool>(type: "bit", nullable: false),
-                    DescriptionId = table.Column<int>(type: "int", nullable: true),
-                    StockId = table.Column<int>(type: "int", nullable: true)
+                    DescriptionId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -109,51 +121,44 @@ namespace Entities.Migrations
                         principalTable: "Descriptions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Produits_Stocks_StockId",
-                        column: x => x.StockId,
-                        principalTable: "Stocks",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ImageProduit",
+                name: "Images",
                 columns: table => new
                 {
-                    ImagesId = table.Column<int>(type: "int", nullable: false),
-                    ProduitsId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateAjout = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsActif = table.Column<bool>(type: "bit", nullable: false),
+                    ProduitId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ImageProduit", x => new { x.ImagesId, x.ProduitsId });
+                    table.PrimaryKey("PK_Images", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ImageProduit_Images_ImagesId",
-                        column: x => x.ImagesId,
-                        principalTable: "Images",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ImageProduit_Produits_ProduitsId",
-                        column: x => x.ProduitsId,
+                        name: "FK_Images_Produits_ProduitId",
+                        column: x => x.ProduitId,
                         principalTable: "Produits",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ProduitTag",
                 columns: table => new
                 {
-                    ProduitId = table.Column<int>(type: "int", nullable: false),
-                    TagsId = table.Column<int>(type: "int", nullable: false)
+                    ProduitsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TagsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProduitTag", x => new { x.ProduitId, x.TagsId });
+                    table.PrimaryKey("PK_ProduitTag", x => new { x.ProduitsId, x.TagsId });
                     table.ForeignKey(
-                        name: "FK_ProduitTag_Produits_ProduitId",
-                        column: x => x.ProduitId,
+                        name: "FK_ProduitTag_Produits_ProduitsId",
+                        column: x => x.ProduitsId,
                         principalTable: "Produits",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -169,8 +174,8 @@ namespace Entities.Migrations
                 name: "ProduitVariant",
                 columns: table => new
                 {
-                    ProduitsId = table.Column<int>(type: "int", nullable: false),
-                    VariantsId = table.Column<int>(type: "int", nullable: false)
+                    ProduitsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    VariantsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -189,20 +194,36 @@ namespace Entities.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Stocks",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DateReapprovisionnement = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateModification = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Quantite = table.Column<int>(type: "int", nullable: false),
+                    ProduitId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Stocks", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Stocks_Produits_ProduitId",
+                        column: x => x.ProduitId,
+                        principalTable: "Produits",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_ImageProduit_ProduitsId",
-                table: "ImageProduit",
-                column: "ProduitsId");
+                name: "IX_Images_ProduitId",
+                table: "Images",
+                column: "ProduitId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Produits_DescriptionId",
                 table: "Produits",
                 column: "DescriptionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Produits_StockId",
-                table: "Produits",
-                column: "StockId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProduitTag_TagsId",
@@ -213,12 +234,23 @@ namespace Entities.Migrations
                 name: "IX_ProduitVariant_VariantsId",
                 table: "ProduitVariant",
                 column: "VariantsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Stocks_ProduitId",
+                table: "Stocks",
+                column: "ProduitId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ImageProduit");
+                name: "Commentaires");
+
+            migrationBuilder.DropTable(
+                name: "Exemples");
+
+            migrationBuilder.DropTable(
+                name: "Images");
 
             migrationBuilder.DropTable(
                 name: "ProduitTag");
@@ -227,22 +259,22 @@ namespace Entities.Migrations
                 name: "ProduitVariant");
 
             migrationBuilder.DropTable(
-                name: "Images");
+                name: "Stocks");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Tags");
 
             migrationBuilder.DropTable(
-                name: "Produits");
-
-            migrationBuilder.DropTable(
                 name: "Variants");
 
             migrationBuilder.DropTable(
-                name: "Descriptions");
+                name: "Produits");
 
             migrationBuilder.DropTable(
-                name: "Stocks");
+                name: "Descriptions");
         }
     }
 }

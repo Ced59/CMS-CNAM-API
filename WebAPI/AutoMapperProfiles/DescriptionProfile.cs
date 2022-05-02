@@ -23,10 +23,9 @@ namespace WebAPI.AutoMapperProfiles
         private void MapDtoToEntities()
         {
             CreateMap<DescriptionDto, Description>()
-                .ForMember(c => c.Produit, opt => opt.Ignore());
+                ;
             CreateMap<DescriptionPostDto, Description>()
-                .ForMember(c => c.Id, opt => opt.Ignore())
-                .ForMember(c => c.Produit, opt => opt.Ignore());
+                .ForMember(c => c.Id, opt => opt.Ignore());
         }
     }
 }

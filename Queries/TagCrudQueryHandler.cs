@@ -19,6 +19,11 @@ namespace Queries
             _db = new DatabaseContext();
         }
 
+        public void Archive(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Tag> GetAll()
         {
             List<Tag> Tags = null;
@@ -31,7 +36,7 @@ namespace Queries
             return Tags;
         }
 
-        public Tag GetById(int id)
+        public Tag GetById(Guid id)
         {
             Tag Tag = null;
             using (_db)
