@@ -1,6 +1,12 @@
 ﻿using Entities.CommentairesEntities;
+using Entities.DescriptionsEntitie;
 using Entities.ExemplesEntitie;
+using Entities.ImagesEntitie;
+using Entities.ProduitsEntitie;
+using Entities.StocksEntitie;
+using Entities.TagsEntitie;
 using Entities.UsersEntities;
+using Entities.VariantsEntitie;
 using Microsoft.EntityFrameworkCore;
 
 namespace Entities.DatabasesContext
@@ -9,6 +15,12 @@ namespace Entities.DatabasesContext
     {
         public DbSet<Exemple> Exemples { get; set; }
         public DbSet<Commentaire> Commentaires { get; set; }
+        public DbSet<Description> Descriptions { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Produit> Produits { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<Variant> Variants { get; set; }
         public DbSet<User> Users { get; set; }
 
         public DatabaseContext() : base() {}
@@ -19,6 +31,12 @@ namespace Entities.DatabasesContext
         {
             modelBuilder.Entity<Exemple>().ToTable("Exemples");
             modelBuilder.Entity<Commentaire>().ToTable("Commentaires");
+            modelBuilder.Entity<Description>().ToTable("Descriptions");
+            modelBuilder.Entity<Image>().ToTable("Images");
+            modelBuilder.Entity<Produit>().ToTable("Produits");
+            modelBuilder.Entity<Stock>().ToTable("Stocks");
+            modelBuilder.Entity<Tag>().ToTable("Tags");
+            modelBuilder.Entity<Variant>().ToTable("Variants");
             modelBuilder.Entity<User>().ToTable("Users");
         }
 
