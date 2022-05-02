@@ -5,13 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="C:\Users\BIENVENUE\.nuget\packages\microsoft.azure.cosmos\3.26.1\contentFiles\any\netstandard2.0\ThirdPartyNotice.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
 	  <PackageReference Include="AutoMapper" Version="11.0.1" />
 	  <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
 	  <PackageReference Include="Bogus" Version="34.0.2" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.16" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
 	  <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.26.1" />
 	  <PackageReference Include="Microsoft.OpenApi" Version="1.2.3" />
 	  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />

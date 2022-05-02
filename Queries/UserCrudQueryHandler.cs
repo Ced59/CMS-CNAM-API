@@ -33,11 +33,20 @@ namespace Queries
 
         public User GetById(Guid id)
         {
-            return _db.Users.FirstOrDefault(e => e.Id == id);
+            return _db.Users.FirstOrDefault(u => u.Id == id);
+        }
+
+        public User GetByLogin(string login)
+        {
+            return _db.Users.FirstOrDefault(u => u.Login == login);
         }
 
         public void Post(User entity)
         {
+            entity.Id = Guid.NewGuid();
+            entity.PasswordId = Guid.NewGuid();
+            entity.Password = User.GeneratePassword(entity.PasswordId.ToString(), entity.Password);
+            entity.IsArchived = false;
             _db.Users.Add(entity);
             _db.SaveChanges();
         }
@@ -46,6 +55,20 @@ namespace Queries
         {
             _db.Update(entity);
             _db.SaveChanges();
+        }
+
+        public User Login(string email, string pwd)
+        {
+            User user = GetByLogin(email);
+            if (user != null && User.CheckPassword(user.PasswordId.ToString(), pwd, user.Password))
+            {
+                return user;
+            }
+            else
+            {
+                return null;
+            }
+
         }
     }
 }

@@ -19,6 +19,8 @@ using Microsoft.EntityFrameworkCore;
 using Queries;
 using Queries.Interface;
 using WebAPI.AutoMapperProfiles;
+using WebAPI.Helpers;
+using Entities.UsersEntities;
 
 namespace WebAPI
 {
@@ -39,6 +41,7 @@ namespace WebAPI
             {
                 config.AddProfile<ExempleProfile>();
                 config.AddProfile<CommentaireProfile>();
+                config.AddProfile<UserProfile>();
             });
 
             mapperConfig.AssertConfigurationIsValid();
@@ -52,6 +55,7 @@ namespace WebAPI
             // Ajout des services des différents Cruds
             services.AddScoped<ICrudInterface<Exemple>, ExempleCrudQueryHandler>();
             services.AddScoped<ICrudInterface<Commentaire>, CommentaireCrudQueryHandler>();
+            services.AddScoped<ICrudInterface<User>, UserCrudQueryHandler>();
 
 
 
@@ -86,6 +90,9 @@ namespace WebAPI
             app.UseRouting();
 
             app.UseAuthorization();
+
+            // custom jwt auth middleware
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
