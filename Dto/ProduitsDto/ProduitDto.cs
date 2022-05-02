@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dto.CommentairesDto;
 using Dto.DescriptionsDto;
 using Dto.ImagesDto;
 using Dto.StocksDto;
@@ -49,5 +50,8 @@ namespace Dto.ProduitsDto
         
         [JsonProperty(PropertyName = "variants")]
         public virtual List<VariantDto> Variants { get; set; }
+
+        [JsonProperty(PropertyName = "commentaires")]
+        public virtual List<CommentaireDto> Commentaires { get; set; }
     }
 }
