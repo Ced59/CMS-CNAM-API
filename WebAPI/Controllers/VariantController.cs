@@ -60,7 +60,7 @@ namespace WebAPI.Controllers
                 _crudService.Post(variant);
                 return Ok();
             }
-            catch (Exception e)
+            catch
             {
                 return StatusCode(500);
             }

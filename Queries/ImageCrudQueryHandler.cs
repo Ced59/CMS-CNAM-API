@@ -42,7 +42,7 @@ namespace Queries
             using (_db)
             {
                 Image = new Image();
-                Image = _db.Images.FirstOrDefault(d => d.IsActif && d.Id == id);
+                Image = _db.Images.FirstOrDefault(d => !d.IsArchived && d.Id == id);
             }
             return Image;
         }

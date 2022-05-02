@@ -42,7 +42,7 @@ namespace Queries
             using (_db)
             {
                 Produit = new Produit();
-                Produit = _db.Produits.FirstOrDefault(d => d.IsActif && d.Id == id);
+                Produit = _db.Produits.FirstOrDefault(d => !d.IsArchived && d.Id == id);
             }
             return Produit;
         }

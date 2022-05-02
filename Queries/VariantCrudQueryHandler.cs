@@ -42,7 +42,7 @@ namespace Queries
             using (_db)
             {
                 Variant = new Variant();
-                Variant = _db.Variants.FirstOrDefault(d => d.IsActif && d.Id == id);
+                Variant = _db.Variants.FirstOrDefault(d => !d.IsArchived && d.Id == id);
             }
             return Variant;
         }

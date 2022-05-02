@@ -20,9 +20,6 @@ namespace Dto.ImagesDto
         [JsonProperty(PropertyName = "dateAjout")]
         public DateTime? DateAjout { get; set; }
 
-        [JsonProperty(PropertyName = "isActif")]
-        public bool IsActif { get; set; }
-
         [JsonProperty(PropertyName = "idProduit")]
         public Guid IdProduit { get; set; }
     }

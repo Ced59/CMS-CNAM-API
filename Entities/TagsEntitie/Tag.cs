@@ -14,7 +14,7 @@ namespace Entities.TagsEntitie
         public Guid Id { get; set; }
         public string Name { get; set; }
         public DateTime? DateAjout { get; set; }
-        public bool IsActif { get; set; }
+        public bool IsArchived { get; set; }
         public virtual List<Produit> Produits { get; set; }
     }
 }

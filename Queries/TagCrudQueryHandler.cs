@@ -42,7 +42,7 @@ namespace Queries
             using (_db)
             {
                 Tag = new Tag();
-                Tag = _db.Tags.FirstOrDefault(d => d.IsActif && d.Id == id);
+                Tag = _db.Tags.FirstOrDefault(d => !d.IsArchived && d.Id == id);
             }
             return Tag;
         }
