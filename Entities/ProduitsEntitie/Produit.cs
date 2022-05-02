@@ -6,6 +6,7 @@ using Entities.VariantsEntitie;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Entities.CommentairesEntities;
 
 namespace Entities.ProduitsEntitie
 {
@@ -22,6 +23,7 @@ namespace Entities.ProduitsEntitie
         public virtual List<Image> Images { get; set; }
         public virtual List<Tag> Tags { get; set; }
         public virtual List<Variant> Variants { get; set; }
+        public virtual List<Commentaire> Commentaires { get; set; }
 
     }
 }
