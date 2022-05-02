@@ -11,9 +11,9 @@ namespace Queries.Interface
     public interface ICrudInterface<T> where T : class
     {
         public void Post(T entity);
-        public T GetById(int id);
+        public T GetById(Guid id);
         public IEnumerable<T> GetAll();
         public void Put(T entity);
-
+        public void Archive(Guid id);
     }
 }

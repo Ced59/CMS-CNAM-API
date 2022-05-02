@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("exemple")]
-        public IActionResult Get(int id)
+        public IActionResult Get(Guid id)
         {
             var result = _crudService.GetById(id);
 

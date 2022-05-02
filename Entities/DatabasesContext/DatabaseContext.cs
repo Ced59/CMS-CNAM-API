@@ -1,5 +1,6 @@
 ﻿using Entities.CommentairesEntities;
 using Entities.ExemplesEntitie;
+using Entities.UsersEntities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Entities.DatabasesContext
@@ -8,6 +9,7 @@ namespace Entities.DatabasesContext
     {
         public DbSet<Exemple> Exemples { get; set; }
         public DbSet<Commentaire> Commentaires { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public DatabaseContext() : base() {}
         
@@ -17,6 +19,7 @@ namespace Entities.DatabasesContext
         {
             modelBuilder.Entity<Exemple>().ToTable("Exemples");
             modelBuilder.Entity<Commentaire>().ToTable("Commentaires");
+            modelBuilder.Entity<User>().ToTable("Users");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
