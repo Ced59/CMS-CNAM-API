@@ -1,6 +1,12 @@
 ﻿using Entities.CommentairesEntities;
 using Entities.DescriptionsEntitie;
 using Entities.ExemplesEntitie;
+using Entities.ImagesEntitie;
+using Entities.ProduitsEntitie;
+using Entities.StocksEntitie;
+using Entities.TagsEntitie;
+using Entities.UsersEntities;
+using Entities.VariantsEntitie;
 using Microsoft.EntityFrameworkCore;
 
 namespace Entities.DatabasesContext
