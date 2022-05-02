@@ -19,7 +19,6 @@ namespace Entities.ProduitsEntitie
         public DateTime? DateAjout { get; set; }
         public bool IsActif { get; set; }
         public Description Description { get; set; }
-        public Stock Stock { get; set; }
         public virtual List<Image> Images { get; set; }
         public virtual List<Tag> Tags { get; set; }
         public virtual List<Variant> Variants { get; set; }

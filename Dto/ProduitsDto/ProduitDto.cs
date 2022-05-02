@@ -41,9 +41,6 @@ namespace Dto.ProduitsDto
         [JsonProperty(PropertyName = "description")]
         public DescriptionDto Description { get; set; }
 
-        [JsonProperty(PropertyName = "stock")]
-        public StockDto Stock { get; set; }
-
         [JsonProperty(PropertyName = "images")]
         public virtual List<ImageDto> Images { get; set; }
         
