@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetProduitById(int id)
+        public IActionResult GetProduitById(Guid id)
         {
             var result = _crudService.GetById(id);
 

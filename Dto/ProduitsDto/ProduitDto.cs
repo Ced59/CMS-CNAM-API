@@ -21,7 +21,7 @@ namespace Dto.ProduitsDto
     public class ProduitDto
     {
         [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }

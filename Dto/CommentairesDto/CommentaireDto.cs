@@ -11,7 +11,7 @@ namespace Dto.CommentairesDto
     public class CommentaireDto
     {
         [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }

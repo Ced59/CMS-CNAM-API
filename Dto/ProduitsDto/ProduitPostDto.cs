@@ -32,13 +32,13 @@ namespace Dto.ProduitsDto
         [JsonProperty(PropertyName = "stock")]
         public StockPostDto Stock { get; set; }
 
-        [JsonProperty(PropertyName = "idImage")]
+        [JsonProperty(PropertyName = "images")]
         public virtual List<ImagePostDto> Images { get; set; }
 
-        [JsonProperty(PropertyName = "idTag")]
+        [JsonProperty(PropertyName = "tags")]
         public virtual List<TagPostDto> Tags { get; set; }
 
-        [JsonProperty(PropertyName = "idVariant")]
+        [JsonProperty(PropertyName = "variants")]
         public virtual List<VariantPostDto> Variants { get; set; }
     }
 }

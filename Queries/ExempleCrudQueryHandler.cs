@@ -19,13 +19,20 @@ namespace Queries
             _db = new DatabaseContext();
         }
 
+        public void Archive(Guid id)
+        {
+            Exemple exemple = _db.Exemples.FirstOrDefault(u => u.Id == id);
+            exemple.IsArchived = true;
+            _db.Exemples.Update(exemple);
+            _db.SaveChanges();
+        }
 
         public IEnumerable<Exemple> GetAll()
         {
             return _db.Exemples;
         }
 
-        public Exemple GetById(int id)
+        public Exemple GetById(Guid id)
         {
             return _db.Exemples.FirstOrDefault(e => e.Id == id);
         }

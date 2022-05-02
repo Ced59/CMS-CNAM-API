@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetTagById(int id)
+        public IActionResult GetTagById(Guid id)
         {
             var result = _crudService.GetById(id);
 

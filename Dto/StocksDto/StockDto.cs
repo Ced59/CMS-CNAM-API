@@ -12,7 +12,7 @@ namespace Dto.StocksDto
     public class StockDto
     {
         [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [JsonProperty(PropertyName = "dateReapprovisionnement")]
         public DateTime? DateReapprovisionnement { get; set; }
@@ -21,7 +21,7 @@ namespace Dto.StocksDto
         public int Quantite { get; set; }
 
         [JsonProperty(PropertyName = "idProduit")]
-        public int IdProduit { get; set; }
+        public Guid IdProduit { get; set; }
 
     }
 }

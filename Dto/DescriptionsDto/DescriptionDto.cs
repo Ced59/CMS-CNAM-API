@@ -13,7 +13,7 @@ namespace Dto.DescriptionsDto
     public class DescriptionDto
     {
         [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
@@ -28,6 +28,6 @@ namespace Dto.DescriptionsDto
         public bool IsActif { get; set; }
 
         [JsonProperty(PropertyName = "idProduit")]
-        public int IdProduit { get; set; }
+        public Guid IdProduit { get; set; }
     }
 }
