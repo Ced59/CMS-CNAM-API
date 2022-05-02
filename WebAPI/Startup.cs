@@ -60,7 +60,7 @@ namespace WebAPI
             services.AddDbContext<DatabaseContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-
+            
             // Ajout des services des différents Cruds
             services.AddScoped<ICrudInterface<Exemple>, ExempleCrudQueryHandler>();
             services.AddScoped<ICrudInterface<Commentaire>, CommentaireCrudQueryHandler>();
