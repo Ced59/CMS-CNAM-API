@@ -19,6 +19,12 @@ using Microsoft.EntityFrameworkCore;
 using Queries;
 using Queries.Interface;
 using WebAPI.AutoMapperProfiles;
+using Entities.VariantsEntitie;
+using Entities.TagsEntitie;
+using Entities.ProduitsEntitie;
+using Entities.ImagesEntitie;
+using Entities.StocksEntitie;
+using Entities.DescriptionsEntitie;
 
 namespace WebAPI
 {
@@ -39,6 +45,12 @@ namespace WebAPI
             {
                 config.AddProfile<ExempleProfile>();
                 config.AddProfile<CommentaireProfile>();
+                config.AddProfile<DescriptionProfile>();
+                config.AddProfile<ImageProfile>();
+                config.AddProfile<ProduitProfile>();
+                config.AddProfile<StockProfile>();
+                config.AddProfile<TagProfile>();
+                config.AddProfile<VariantProfile>();
             });
 
             mapperConfig.AssertConfigurationIsValid();
@@ -52,6 +64,10 @@ namespace WebAPI
             // Ajout des services des différents Cruds
             services.AddScoped<ICrudInterface<Exemple>, ExempleCrudQueryHandler>();
             services.AddScoped<ICrudInterface<Commentaire>, CommentaireCrudQueryHandler>();
+            services.AddScoped<ICrudInterface<Variant>, VariantCrudQueryHandler>();
+            services.AddScoped<ICrudInterface<Tag>, TagCrudQueryHandler>();
+            services.AddScoped<ICrudInterface<Produit>, ProduitCrudQueryHandler>();
+            services.AddScoped<ICrudInterface<Image>, ImageCrudQueryHandler>();
 
 
 
@@ -67,30 +83,21 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "API CNAM CMS 2022"); c.RoutePrefix = "api"; });
             }
 
-            app.UseHttpsRedirection();
-
             app.UseSwagger();
-
-            app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API CNAM CMS 2022");
-                    c.RoutePrefix = "api";
-                }
-            );
-
+            app.UseHttpsRedirection();
             app.UseRouting();
-
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

@@ -4,14 +4,16 @@ using Entities.DatabasesContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Entities.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220418150747_ProdutsFullEntitesMigration2")]
+    partial class ProdutsFullEntitesMigration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,12 +58,7 @@ namespace Entities.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProduitId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProduitId");
 
                     b.ToTable("Descriptions");
                 });
@@ -103,15 +100,10 @@ namespace Entities.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProduitId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProduitId");
 
                     b.ToTable("Images");
                 });
@@ -126,6 +118,9 @@ namespace Entities.Migrations
                     b.Property<DateTime?>("DateAjout")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("DescriptionId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsActif")
                         .HasColumnType("bit");
 
@@ -135,10 +130,17 @@ namespace Entities.Migrations
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
+                    b.Property<int?>("StockId")
+                        .HasColumnType("int");
+
                     b.Property<double>("Tva")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DescriptionId");
+
+                    b.HasIndex("StockId");
 
                     b.ToTable("Produits");
                 });
@@ -156,15 +158,10 @@ namespace Entities.Migrations
                     b.Property<DateTime?>("DateReapprovisionnement")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ProduitId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Quantite")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProduitId");
 
                     b.ToTable("Stocks");
                 });
@@ -214,15 +211,30 @@ namespace Entities.Migrations
                     b.ToTable("Variants");
                 });
 
+            modelBuilder.Entity("ImageProduit", b =>
+                {
+                    b.Property<int>("ImagesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProduitsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ImagesId", "ProduitsId");
+
+                    b.HasIndex("ProduitsId");
+
+                    b.ToTable("ImageProduit");
+                });
+
             modelBuilder.Entity("ProduitTag", b =>
                 {
-                    b.Property<int>("ProduitsId")
+                    b.Property<int>("ProduitId")
                         .HasColumnType("int");
 
                     b.Property<int>("TagsId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProduitsId", "TagsId");
+                    b.HasKey("ProduitId", "TagsId");
 
                     b.HasIndex("TagsId");
 
@@ -244,38 +256,41 @@ namespace Entities.Migrations
                     b.ToTable("ProduitVariant");
                 });
 
-            modelBuilder.Entity("Entities.DescriptionsEntitie.Description", b =>
+            modelBuilder.Entity("Entities.ProduitsEntitie.Produit", b =>
                 {
-                    b.HasOne("Entities.ProduitsEntitie.Produit", "Produit")
+                    b.HasOne("Entities.DescriptionsEntitie.Description", "Description")
                         .WithMany()
-                        .HasForeignKey("ProduitId");
+                        .HasForeignKey("DescriptionId");
 
-                    b.Navigation("Produit");
+                    b.HasOne("Entities.StocksEntitie.Stock", "Stock")
+                        .WithMany()
+                        .HasForeignKey("StockId");
+
+                    b.Navigation("Description");
+
+                    b.Navigation("Stock");
                 });
 
-            modelBuilder.Entity("Entities.ImagesEntitie.Image", b =>
+            modelBuilder.Entity("ImageProduit", b =>
                 {
-                    b.HasOne("Entities.ProduitsEntitie.Produit", "Produit")
-                        .WithMany("Images")
-                        .HasForeignKey("ProduitId");
-
-                    b.Navigation("Produit");
-                });
-
-            modelBuilder.Entity("Entities.StocksEntitie.Stock", b =>
-                {
-                    b.HasOne("Entities.ProduitsEntitie.Produit", "Produit")
+                    b.HasOne("Entities.ImagesEntitie.Image", null)
                         .WithMany()
-                        .HasForeignKey("ProduitId");
+                        .HasForeignKey("ImagesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Produit");
+                    b.HasOne("Entities.ProduitsEntitie.Produit", null)
+                        .WithMany()
+                        .HasForeignKey("ProduitsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ProduitTag", b =>
                 {
                     b.HasOne("Entities.ProduitsEntitie.Produit", null)
                         .WithMany()
-                        .HasForeignKey("ProduitsId")
+                        .HasForeignKey("ProduitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -299,11 +314,6 @@ namespace Entities.Migrations
                         .HasForeignKey("VariantsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Entities.ProduitsEntitie.Produit", b =>
-                {
-                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }
