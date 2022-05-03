@@ -12,6 +12,6 @@ namespace Entities.ProduitsEntities
         public string Url { get; set; }
         public DateTime? DateAjout { get; set; }
         public bool IsActif { get; set; }
-        public virtual Produit Produit { get; set; }
+        public  Produit Produit { get; set; }
     }
 }

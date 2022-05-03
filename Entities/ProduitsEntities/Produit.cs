@@ -15,10 +15,10 @@ namespace Entities.ProduitsEntities
         public DateTime? DateAjout { get; set; }
         public bool IsActif { get; set; }
         public Description Description { get; set; }
-        public virtual List<Image> Images { get; set; }
-        public virtual List<Tag> Tags { get; set; }
-        public virtual List<Variant> Variants { get; set; }
-        public virtual List<Commentaire> Commentaires { get; set; }
+        public  List<Image> Images { get; set; }
+        public  List<Tag> Tags { get; set; }
+        public  List<Variant> Variants { get; set; }
+        public  List<Commentaire> Commentaires { get; set; }
 
     }
 }
