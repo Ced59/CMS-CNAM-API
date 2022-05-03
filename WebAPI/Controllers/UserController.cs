@@ -29,6 +29,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("users")]
         public IActionResult GetAll()
         {
@@ -45,6 +46,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("user/{id}")]
         public IActionResult Get(Guid id)
         {
@@ -60,21 +62,26 @@ namespace WebAPI.Controllers
 
         [HttpPost]
         [Route("signup"), AllowAnonymous()]
-        public IActionResult Post(UserPostDto userDto)
+        public IActionResult Post(UserPostDto userPostDto)
         {
             try
             {
-                User user = _mapper.Map<User>(userDto);
+                if(string.IsNullOrEmpty(userPostDto.Password) || userPostDto.Password != userPostDto.PasswordCheck)
+                {
+                    throw new ArgumentException("Mots de passe incorrecte");
+                }
+                User user = _mapper.Map<User>(userPostDto);
                 _crudService.Post(user);
                 return Ok();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(500);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
         [HttpPut]
+        [Authorize]
         [Route("user")]
         public IActionResult Put(UserDto userDto)
         {
@@ -109,8 +116,6 @@ namespace WebAPI.Controllers
             {
                 return BadRequest(new { message = "Username or password is incorrect" });
             }
-
         }
-
     }
 }

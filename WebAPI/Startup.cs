@@ -27,6 +27,7 @@ using Entities.ProduitsEntitie;
 using Entities.ImagesEntitie;
 using Entities.StocksEntitie;
 using Entities.DescriptionsEntitie;
+using WebAPI.Extensions;
 
 namespace WebAPI
 {
@@ -56,6 +57,8 @@ namespace WebAPI
                 config.AddProfile<VariantProfile>();
             });
 
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
             mapperConfig.AssertConfigurationIsValid();
 
             services.AddAutoMapper(typeof(Startup));
@@ -72,6 +75,8 @@ namespace WebAPI
             services.AddScoped<ICrudInterface<Produit>, ProduitCrudQueryHandler>();
             services.AddScoped<ICrudInterface<Image>, ImageCrudQueryHandler>();
             services.AddScoped<ICrudInterface<User>, UserCrudQueryHandler>();
+            services.AddScoped<UserService>();
+            services.AddScoped<UserCrudQueryHandler>();
 
 
 

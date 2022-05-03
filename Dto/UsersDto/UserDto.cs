@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dto.UsersDto
 {
-    public class UserDto : UserPostDto
+    public class UserDto : UserBase
     {
         [JsonProperty(PropertyName = "id")]
         public Guid Id { get; set; }

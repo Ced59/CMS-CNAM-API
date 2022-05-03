@@ -19,17 +19,19 @@ namespace WebAPI.AutoMapperProfiles
         private void MapEntitiesToDto()
         {
             CreateMap<User, UserDto>();
+            CreateMap<User, UserPostDto>().ForMember(x => x.PasswordCheck, opt => opt.Ignore()); ;
         }
 
         private void MapDtoToEntities()
         {
             CreateMap<UserDto, User>()
                 .ForMember(x => x.Password, opt => opt.Ignore())
-                .ForMember(x => x.PasswordId, opt => opt.Ignore());
+                .ForMember(x => x.PasswordId, opt => opt.Ignore())
+                .ForMember(x => x.IsArchived, opt => opt.Ignore());
             CreateMap<UserPostDto, User>()
                 .ForMember(x => x.Id, opt => opt.Ignore())
-                .ForMember(x => x.Password, opt => opt.Ignore())
-                .ForMember(x => x.PasswordId, opt => opt.Ignore());
+                .ForMember(x => x.PasswordId, opt => opt.Ignore())
+                .ForMember(x => x.IsArchived, opt => opt.Ignore());
         }
     }
 }
