@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using Dto.CommentairesDto;
 using Dto.ProduitsDto;
-using Entities.CommentairesEntities;
-using Entities.ProduitsEntitie;
+using Entities.ProduitsEntities;
 
 namespace WebAPI.AutoMapperProfiles
 {
@@ -24,7 +23,7 @@ namespace WebAPI.AutoMapperProfiles
             CreateMap<ProduitDto, Produit>();
             CreateMap<ProduitPostDto, Produit>()
                 .ForMember(c => c.Id, opt => opt.Ignore())
-                .ForMember(c => c.Commentaires, opt => opt.Ignore();
+                .ForMember(c => c.Commentaires, opt => opt.Ignore());
         }
     }
 }
