@@ -23,9 +23,6 @@ namespace Dto.DescriptionsDto
         [JsonProperty(PropertyName = "dateDescription")]
         public DateTime? DateDescription { get; set; }
 
-        [JsonProperty(PropertyName = "isActif")]
-        public bool IsActif { get; set; }
-
         [JsonProperty(PropertyName = "idProduit")]
         public Guid IdProduit { get; set; }
     }

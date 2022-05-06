@@ -13,7 +13,7 @@ namespace Entities.ProduitsEntities
         public float Price { get; set; }
         public double Tva { get; set; }
         public DateTime? DateAjout { get; set; }
-        public bool IsActif { get; set; }
+        public bool IsArchived { get; set; }
         public Description Description { get; set; }
         public  List<Image> Images { get; set; }
         public  List<Tag> Tags { get; set; }

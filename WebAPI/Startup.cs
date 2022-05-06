@@ -12,7 +12,6 @@ using Queries;
 using Queries.Interface;
 using WebAPI.AutoMapperProfiles;
 using Entities.ProduitsEntities;
-using WebAPI.DatabaseService;
 
 namespace WebAPI
 {
@@ -56,9 +55,6 @@ namespace WebAPI
             services.AddScoped<ICrudInterface<Tag>, TagCrudQueryHandler>();
             services.AddScoped<ICrudInterface<Produit>, ProduitCrudQueryHandler>();
             services.AddScoped<ICrudInterface<Image>, ImageCrudQueryHandler>();
-
-            var fakeDatas = new ServiceDatabaseDatas();
-            //fakeDatas.GenerateDbDatas();
 
 
 
