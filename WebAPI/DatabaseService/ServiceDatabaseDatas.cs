@@ -43,14 +43,14 @@ namespace WebAPI.DatabaseService
             var admin = new User()
             {
                 Id = Guid.NewGuid(),
-                Nom = "AdminLastName",
-                Prenom = "AdminFirstName",
+                LastName = "AdminLastName",
+                FirstName = "AdminFirstName",
                 Login = "admin@test.com",
                 Password = "password",
                 UrlPhoto = faker.Person.Avatar,
                 IsArchived = false,
-                Role = "administrateur",
-                Civilite = "Mr"
+                IsAdmin = true,
+                Gender = "Mr"
             };
 
             users.Add(admin);
@@ -60,14 +60,14 @@ namespace WebAPI.DatabaseService
             var user = new User()
             {
                 Id = Guid.NewGuid(),
-                Nom = "UserLastName",
-                Prenom = "UserFirstName",
+                LastName = "UserLastName",
+                FirstName = "UserFirstName",
                 Login = "user@test.com",
                 Password = "password",
                 UrlPhoto = faker.Person.Avatar,
                 IsArchived = false,
-                Role = "utilisateur",
-                Civilite = "Mr"
+                IsAdmin = false,
+                Gender = "Mr"
             };
 
             users.Add(user);
@@ -78,14 +78,14 @@ namespace WebAPI.DatabaseService
                 users.Add(new User
                 {
                     Id = Guid.NewGuid(),
-                    Nom = faker.Person.LastName,
-                    Prenom = faker.Person.FirstName,
+                    LastName = faker.Person.LastName,
+                    FirstName = faker.Person.FirstName,
                     Login = faker.Person.UserName,
                     Password = "password",
                     UrlPhoto = faker.Person.Avatar,
                     IsArchived = faker.Random.Bool(),
-                    Role = "utilisateur",
-                    Civilite = faker.Person.Gender.ToString()
+                    IsAdmin = false,
+                    Gender = faker.Person.Gender.ToString()
                 });
             }
 

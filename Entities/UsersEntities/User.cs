@@ -16,8 +16,8 @@ namespace Entities.UsersEntities
         [Key]
         public Guid Id { get; set; }
         public Guid PasswordId { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Pseudo { get; set; }
         public string Gender { get; set; }
         public string Login { get; set; }

@@ -9,11 +9,11 @@ namespace Dto.UsersDto
 {
     public class UserBase
     {
-        [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
+        [JsonProperty(PropertyName = "firstname")]
+        public string FirstName { get; set; }
 
-        [JsonProperty(PropertyName = "surname")]
-        public string Surname { get; set; }
+        [JsonProperty(PropertyName = "lastname")]
+        public string LastName { get; set; }
         [JsonProperty(PropertyName = "pseudo")]
         public string Pseudo { get; set; }
 

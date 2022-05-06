@@ -20,14 +20,10 @@ using Queries.Interface;
 using WebAPI.AutoMapperProfiles;
 using WebAPI.Helpers;
 using Entities.UsersEntities;
-using Entities.VariantsEntitie;
-using Entities.TagsEntitie;
-using Entities.ProduitsEntitie;
-using Entities.ImagesEntitie;
-using Entities.StocksEntitie;
 using Entities.DescriptionsEntitie;
 using Entities.ProduitsEntities;
 using WebAPI.DatabaseService;
+using WebAPI.Extensions;
 
 namespace WebAPI
 {
