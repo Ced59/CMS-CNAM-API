@@ -1,32 +1,17 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
-using Entities.CommentairesEntities;
 using Entities.DatabasesContext;
 using Entities.ExemplesEntitie;
 using Microsoft.EntityFrameworkCore;
 using Queries;
 using Queries.Interface;
 using WebAPI.AutoMapperProfiles;
-using Entities.VariantsEntitie;
-using Entities.TagsEntitie;
-using Entities.ProduitsEntitie;
-using Entities.ImagesEntitie;
-using Entities.StocksEntitie;
-using Entities.DescriptionsEntitie;
-using Entities.MentionsLegalesEntitie;
-using Entities.ConditionsGeneralesVenteEntitie;
+using Entities.ProduitsEntities;
 
 namespace WebAPI
 {
@@ -53,8 +38,6 @@ namespace WebAPI
                 config.AddProfile<StockProfile>();
                 config.AddProfile<TagProfile>();
                 config.AddProfile<VariantProfile>();
-                config.AddProfile<MentionsLegalesProfile>();
-                config.AddProfile<ConditionsGeneralesVenteProfile>();
             });
 
             mapperConfig.AssertConfigurationIsValid();
@@ -72,8 +55,6 @@ namespace WebAPI
             services.AddScoped<ICrudInterface<Tag>, TagCrudQueryHandler>();
             services.AddScoped<ICrudInterface<Produit>, ProduitCrudQueryHandler>();
             services.AddScoped<ICrudInterface<Image>, ImageCrudQueryHandler>();
-            services.AddScoped<ICrudInterface<MentionsLegales>, MentionsLegalesCrudQueryHandler>();
-            services.AddScoped<ICrudInterface<ConditionsGeneralesVente>, ConditionsGeneralesVenteCrudQueryHandler>();
 
 
 

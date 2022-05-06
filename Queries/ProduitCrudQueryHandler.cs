@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entities.CommentairesEntities;
 using Entities.DatabasesContext;
-using Entities.ProduitsEntitie;
+using Entities.ProduitsEntities;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Queries.Interface;
 
@@ -31,7 +30,15 @@ namespace Queries
             using (_db)
             {
                 Produits = new List<Produit>();
-                Produits = _db.Produits.ToList();
+                Produits = _db.Produits.Select(p=>new Produit()
+                {
+                    Id = p.Id,
+                    Description = p.Description,
+                    Variants = p.Variants,
+                    Images = p.Images,
+                    Commentaires = p.Commentaires,
+                    Tags = p.Tags,
+                }).ToList();
             }
             return Produits;
         }
@@ -41,8 +48,20 @@ namespace Queries
             Produit Produit = null;
             using (_db)
             {
-                Produit = new Produit();
-                Produit = _db.Produits.FirstOrDefault(d => d.IsActif && d.Id == id);
+                Produit = new Produit()
+                {
+                    Commentaires =  _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Commentaires,
+                    Images =        _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Images,
+                    Tags =          _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Tags,
+                    Description =   _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Description,
+                    Variants =      _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Variants,
+                    DateAjout =     _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).DateAjout,
+                    Id =            _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Id,
+                    IsArchived =       _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).IsArchived,
+                    Name =          _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Name,
+                    Price =         _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Price,
+                    Tva =           _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Tva
+                };
             }
             return Produit;
         }
@@ -53,6 +72,38 @@ namespace Queries
             using (_db)
             {
                 _db.Produits.Add(entity);
+                if (entity.Images != null)
+                {
+                    foreach (var img in entity.Images)
+                    {
+                        _db.Images.Add(img);
+                    }
+                }
+                if (entity.Tags != null)
+                {
+                    foreach (var tag in entity.Tags)
+                    {
+                        _db.Tags.Add(tag);
+                    }
+                }
+                if (entity.Variants != null)
+                {
+                    foreach (var variant in entity.Variants)
+                    {
+                        _db.Variants.Add(variant);
+                    }
+                }
+                if (entity.Commentaires != null)
+                {
+                    foreach (var c in entity.Commentaires)
+                    {
+                        _db.Commentaires.Add(c);
+                    }
+                }
+                if (entity.Description != null)
+                {
+                    _db.Descriptions.Add(entity.Description);
+                }
                 _db.SaveChanges();
             }
         }

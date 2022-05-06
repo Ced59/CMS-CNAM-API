@@ -1,5 +1,4 @@
-﻿using Entities.ProduitsEntitie;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,6 +14,6 @@ namespace Entities.DescriptionsEntitie
         public string Name { get; set; }
         public string Information { get; set; }
         public DateTime? DateDescription { get; set; }
-        public bool IsActif { get; set; }
+        public bool IsArchived { get; set; }
     }
 }

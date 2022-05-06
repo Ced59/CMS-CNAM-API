@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using Dto.CommentairesDto;
 using Dto.ImagesDto;
-using Entities.CommentairesEntities;
-using Entities.ImagesEntitie;
+using Entities.ProduitsEntities;
 
 namespace WebAPI.AutoMapperProfiles
 {
@@ -23,10 +21,12 @@ namespace WebAPI.AutoMapperProfiles
         private void MapDtoToEntities()
         {
             CreateMap<ImageDto, Image>()
-                .ForMember(c => c.Produit, opt => opt.Ignore());
+                .ForMember(c => c.Produit, opt => opt.Ignore())
+                .ForMember(c => c.IsArchived, opt => opt.Ignore());
             CreateMap<ImagePostDto, Image>()
                 .ForMember(c => c.Id, opt => opt.Ignore())
-                .ForMember(c => c.Produit, opt => opt.Ignore());
+                .ForMember(c => c.Produit, opt => opt.Ignore())
+                .ForMember(c => c.IsArchived, opt => opt.Ignore());
         }
     }
 }

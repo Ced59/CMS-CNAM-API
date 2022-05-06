@@ -3,8 +3,7 @@ using System.Linq;
 using AutoMapper;
 using Dto.CommentairesDto;
 using Dto.TagsDto;
-using Entities.CommentairesEntities;
-using Entities.TagsEntitie;
+using Entities.ProduitsEntities;
 using Microsoft.AspNetCore.Mvc;
 using Queries.Interface;
 
@@ -60,7 +59,7 @@ namespace WebAPI.Controllers
                 _crudService.Post(Tag);
                 return Ok();
             }
-            catch (Exception e)
+            catch
             {
                 return StatusCode(500);
             }

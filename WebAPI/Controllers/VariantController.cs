@@ -3,8 +3,7 @@ using System.Linq;
 using AutoMapper;
 using Dto.CommentairesDto;
 using Dto.VariantsDto;
-using Entities.CommentairesEntities;
-using Entities.VariantsEntitie;
+using Entities.ProduitsEntities;
 using Microsoft.AspNetCore.Mvc;
 using Queries.Interface;
 
@@ -60,7 +59,7 @@ namespace WebAPI.Controllers
                 _crudService.Post(variant);
                 return Ok();
             }
-            catch (Exception e)
+            catch
             {
                 return StatusCode(500);
             }

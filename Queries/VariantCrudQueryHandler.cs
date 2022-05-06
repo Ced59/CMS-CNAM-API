@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entities.CommentairesEntities;
 using Entities.DatabasesContext;
-using Entities.VariantsEntitie;
+using Entities.ProduitsEntities;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Queries.Interface;
 
@@ -42,7 +41,7 @@ namespace Queries
             using (_db)
             {
                 Variant = new Variant();
-                Variant = _db.Variants.FirstOrDefault(d => d.IsActif && d.Id == id);
+                Variant = _db.Variants.FirstOrDefault(d => !d.IsArchived && d.Id == id);
             }
             return Variant;
         }

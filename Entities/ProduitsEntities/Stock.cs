@@ -1,12 +1,7 @@
-﻿using Entities.ProduitsEntitie;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Entities.StocksEntitie
+namespace Entities.ProduitsEntities
 {
     public class Stock
     {
@@ -15,7 +10,7 @@ namespace Entities.StocksEntitie
         public DateTime? DateReapprovisionnement { get; set; }
         public DateTime? DateModification{ get; set; }
         public int Quantite { get; set; }
-        public virtual Produit Produit{ get; set; }
+        public  Produit Produit{ get; set; }
 
     }
 }

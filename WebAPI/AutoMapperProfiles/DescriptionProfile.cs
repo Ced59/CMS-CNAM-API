@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Dto.CommentairesDto;
 using Dto.DescriptionsDto;
-using Entities.CommentairesEntities;
 using Entities.DescriptionsEntitie;
 
 namespace WebAPI.AutoMapperProfiles
@@ -23,9 +22,11 @@ namespace WebAPI.AutoMapperProfiles
         private void MapDtoToEntities()
         {
             CreateMap<DescriptionDto, Description>()
-                ;
+                .ForMember(c => c.IsArchived, opt => opt.Ignore());
+
             CreateMap<DescriptionPostDto, Description>()
-                .ForMember(c => c.Id, opt => opt.Ignore());
+                .ForMember(c => c.Id, opt => opt.Ignore())
+                .ForMember(c => c.IsArchived, opt => opt.Ignore());
         }
     }
 }

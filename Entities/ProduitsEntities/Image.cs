@@ -1,12 +1,7 @@
-﻿using Entities.ProduitsEntitie;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Entities.ImagesEntitie
+namespace Entities.ProduitsEntities
 {
     public class Image
     {
@@ -16,7 +11,7 @@ namespace Entities.ImagesEntitie
         public string Information { get; set; }
         public string Url { get; set; }
         public DateTime? DateAjout { get; set; }
-        public bool IsActif { get; set; }
+        public bool IsArchived { get; set; }
         public virtual Produit Produit { get; set; }
     }
 }

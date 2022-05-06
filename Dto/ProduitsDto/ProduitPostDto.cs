@@ -23,8 +23,8 @@ namespace Dto.ProduitsDto
         [JsonProperty(PropertyName = "dateAjout")]
         public DateTime? DateAjout { get; set; }
 
-        [JsonProperty(PropertyName = "isActif")]
-        public bool IsActif { get; set; }
+        [JsonProperty(PropertyName = "isArchived")]
+        public bool IsArchived { get; set; }
 
         [JsonProperty(PropertyName = "description")]
         public DescriptionPostDto Description { get; set; }

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entities.CommentairesEntities;
 using Entities.DatabasesContext;
-using Entities.ImagesEntitie;
+using Entities.ProduitsEntities;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Queries.Interface;
 
@@ -42,7 +41,7 @@ namespace Queries
             using (_db)
             {
                 Image = new Image();
-                Image = _db.Images.FirstOrDefault(d => d.IsActif && d.Id == id);
+                Image = _db.Images.FirstOrDefault(d => !d.IsArchived && d.Id == id);
             }
             return Image;
         }

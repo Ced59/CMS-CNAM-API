@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Entities.CommentairesEntities;
 using Entities.DatabasesContext;
-using Entities.TagsEntitie;
-using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
+using Entities.ProduitsEntities;
 using Queries.Interface;
 
 namespace Queries
@@ -42,7 +38,7 @@ namespace Queries
             using (_db)
             {
                 Tag = new Tag();
-                Tag = _db.Tags.FirstOrDefault(d => d.IsActif && d.Id == id);
+                Tag = _db.Tags.FirstOrDefault(d => !d.IsArchived && d.Id == id);
             }
             return Tag;
         }

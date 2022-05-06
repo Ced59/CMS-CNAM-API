@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dto.ProduitsDto;
-using Entities.ProduitsEntitie;
 using Newtonsoft.Json;
 
 namespace Dto.ImagesDto
@@ -26,9 +25,6 @@ namespace Dto.ImagesDto
 
         [JsonProperty(PropertyName = "dateAjout")]
         public DateTime? DateAjout { get; set; }
-
-        [JsonProperty(PropertyName = "isActif")]
-        public bool IsActif { get; set; }
 
         [JsonProperty(PropertyName = "idProduit")]
         public Guid IdProduit { get; set; }

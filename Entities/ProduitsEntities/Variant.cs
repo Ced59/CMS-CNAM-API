@@ -1,12 +1,8 @@
-﻿using Entities.ProduitsEntitie;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Entities.VariantsEntitie
+namespace Entities.ProduitsEntities
 {
     public class Variant
     {
@@ -15,7 +11,7 @@ namespace Entities.VariantsEntitie
         public string Name { get; set; }
         public string Descriptif { get; set; }
         public DateTime? DateAjout { get; set; }
-        public bool IsActif { get; set; }
+        public bool IsArchived { get; set; }
         public virtual List<Produit> Produits { get; set; }
     }
 }

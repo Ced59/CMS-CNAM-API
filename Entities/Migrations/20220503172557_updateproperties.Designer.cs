@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Entities.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220502094151_ChangeToGuid")]
-    partial class ChangeToGuid
+    [Migration("20220503172557_updateproperties")]
+    partial class updateproperties
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,26 +20,6 @@ namespace Entities.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.15")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Entities.CommentairesEntities.Commentaire", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsArchived")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Commentaires");
-                });
 
             modelBuilder.Entity("Entities.DescriptionsEntitie.Description", b =>
                 {
@@ -84,7 +64,38 @@ namespace Entities.Migrations
                     b.ToTable("Exemples");
                 });
 
-            modelBuilder.Entity("Entities.ImagesEntitie.Image", b =>
+            modelBuilder.Entity("Entities.ProduitsEntities.Commentaire", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsArchived")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Note")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ProduitId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProduitId");
+
+                    b.ToTable("Commentaires");
+                });
+
+            modelBuilder.Entity("Entities.ProduitsEntities.Image", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -115,7 +126,7 @@ namespace Entities.Migrations
                     b.ToTable("Images");
                 });
 
-            modelBuilder.Entity("Entities.ProduitsEntitie.Produit", b =>
+            modelBuilder.Entity("Entities.ProduitsEntities.Produit", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -146,7 +157,7 @@ namespace Entities.Migrations
                     b.ToTable("Produits");
                 });
 
-            modelBuilder.Entity("Entities.StocksEntitie.Stock", b =>
+            modelBuilder.Entity("Entities.ProduitsEntities.Stock", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -171,7 +182,7 @@ namespace Entities.Migrations
                     b.ToTable("Stocks");
                 });
 
-            modelBuilder.Entity("Entities.TagsEntitie.Tag", b =>
+            modelBuilder.Entity("Entities.ProduitsEntities.Tag", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -189,6 +200,29 @@ namespace Entities.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("Entities.ProduitsEntities.Variant", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DateAjout")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Descriptif")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActif")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Variants");
                 });
 
             modelBuilder.Entity("Entities.UsersEntities.User", b =>
@@ -226,29 +260,6 @@ namespace Entities.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Entities.VariantsEntitie.Variant", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DateAjout")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Descriptif")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActif")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Variants");
-                });
-
             modelBuilder.Entity("ProduitTag", b =>
                 {
                     b.Property<Guid>("ProduitsId")
@@ -279,16 +290,25 @@ namespace Entities.Migrations
                     b.ToTable("ProduitVariant");
                 });
 
-            modelBuilder.Entity("Entities.ImagesEntitie.Image", b =>
+            modelBuilder.Entity("Entities.ProduitsEntities.Commentaire", b =>
                 {
-                    b.HasOne("Entities.ProduitsEntitie.Produit", "Produit")
+                    b.HasOne("Entities.ProduitsEntities.Produit", null)
+                        .WithMany("Commentaires")
+                        .HasForeignKey("ProduitId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.ProduitsEntities.Image", b =>
+                {
+                    b.HasOne("Entities.ProduitsEntities.Produit", "Produit")
                         .WithMany("Images")
                         .HasForeignKey("ProduitId");
 
                     b.Navigation("Produit");
                 });
 
-            modelBuilder.Entity("Entities.ProduitsEntitie.Produit", b =>
+            modelBuilder.Entity("Entities.ProduitsEntities.Produit", b =>
                 {
                     b.HasOne("Entities.DescriptionsEntitie.Description", "Description")
                         .WithMany()
@@ -297,9 +317,9 @@ namespace Entities.Migrations
                     b.Navigation("Description");
                 });
 
-            modelBuilder.Entity("Entities.StocksEntitie.Stock", b =>
+            modelBuilder.Entity("Entities.ProduitsEntities.Stock", b =>
                 {
-                    b.HasOne("Entities.ProduitsEntitie.Produit", "Produit")
+                    b.HasOne("Entities.ProduitsEntities.Produit", "Produit")
                         .WithMany()
                         .HasForeignKey("ProduitId");
 
@@ -308,13 +328,13 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("ProduitTag", b =>
                 {
-                    b.HasOne("Entities.ProduitsEntitie.Produit", null)
+                    b.HasOne("Entities.ProduitsEntities.Produit", null)
                         .WithMany()
                         .HasForeignKey("ProduitsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.TagsEntitie.Tag", null)
+                    b.HasOne("Entities.ProduitsEntities.Tag", null)
                         .WithMany()
                         .HasForeignKey("TagsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -323,21 +343,23 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("ProduitVariant", b =>
                 {
-                    b.HasOne("Entities.ProduitsEntitie.Produit", null)
+                    b.HasOne("Entities.ProduitsEntities.Produit", null)
                         .WithMany()
                         .HasForeignKey("ProduitsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.VariantsEntitie.Variant", null)
+                    b.HasOne("Entities.ProduitsEntities.Variant", null)
                         .WithMany()
                         .HasForeignKey("VariantsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Entities.ProduitsEntitie.Produit", b =>
+            modelBuilder.Entity("Entities.ProduitsEntities.Produit", b =>
                 {
+                    b.Navigation("Commentaires");
+
                     b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
