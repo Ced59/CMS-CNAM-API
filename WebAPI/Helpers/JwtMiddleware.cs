@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Queries;
 using System;
+using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
@@ -20,16 +21,15 @@ namespace WebAPI.Helpers
         private readonly RequestDelegate _next;
         private readonly AppSettings _appSettings;
 
-        public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings)
+        public JwtMiddleware(RequestDelegate next)
         {
             _next = next;
-            _appSettings = appSettings.Value;
+            _appSettings = new AppSettings {Secret = "MljSKJpASLjhsbdixpPj8sdMi782ZssA" };
         }
 
         public async Task Invoke(HttpContext context)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-
             if (token != null)
                 AttachUserToContext(context, token);
 
@@ -42,7 +42,8 @@ namespace WebAPI.Helpers
             {
                 UserCrudQueryHandler queryHandler = new UserCrudQueryHandler();
                 var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+                
+                byte[] key = Encoding.ASCII.GetBytes(_appSettings.Secret);
                 tokenHandler.ValidateToken(token, new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,

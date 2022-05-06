@@ -39,6 +39,7 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             // AutoMapper
             var mapperConfig = new MapperConfiguration(config =>
             {
@@ -52,8 +53,6 @@ namespace WebAPI
                 config.AddProfile<TagProfile>();
                 config.AddProfile<VariantProfile>();
             });
-
-            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
             mapperConfig.AssertConfigurationIsValid();
 
@@ -92,7 +91,7 @@ namespace WebAPI
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
-            app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(options => options.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
 
             if (env.IsDevelopment())
             {
@@ -107,11 +106,11 @@ namespace WebAPI
 
             // custom jwt auth middleware
             app.UseMiddleware<JwtMiddleware>();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+            
         }
     }
 }
