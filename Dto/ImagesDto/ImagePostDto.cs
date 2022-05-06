@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Dto.ProduitsDto;
-using Entities.ProduitsEntitie;
 using Newtonsoft.Json;
 
 namespace Dto.ImagesDto

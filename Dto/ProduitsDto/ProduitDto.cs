@@ -11,10 +11,6 @@ using Dto.StocksDto;
 using Dto.TagsDto;
 using Dto.VariantsDto;
 using Entities.DescriptionsEntitie;
-using Entities.ImagesEntitie;
-using Entities.StocksEntitie;
-using Entities.TagsEntitie;
-using Entities.VariantsEntitie;
 using Newtonsoft.Json;
 
 namespace Dto.ProduitsDto

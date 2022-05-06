@@ -2,7 +2,7 @@
 using System.Linq;
 using AutoMapper;
 using Dto.CommentairesDto;
-using Entities.CommentairesEntities;
+using Entities.ProduitsEntities;
 using Microsoft.AspNetCore.Mvc;
 using Queries.Interface;
 

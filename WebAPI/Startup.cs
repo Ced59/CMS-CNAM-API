@@ -12,7 +12,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Entities.CommentairesEntities;
 using Entities.DatabasesContext;
 using Entities.ExemplesEntitie;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +26,8 @@ using Entities.ProduitsEntitie;
 using Entities.ImagesEntitie;
 using Entities.StocksEntitie;
 using Entities.DescriptionsEntitie;
-using WebAPI.Extensions;
+using Entities.ProduitsEntities;
+using WebAPI.DatabaseService;
 
 namespace WebAPI
 {
@@ -77,6 +77,9 @@ namespace WebAPI
             services.AddScoped<ICrudInterface<User>, UserCrudQueryHandler>();
             services.AddScoped<UserService>();
             services.AddScoped<UserCrudQueryHandler>();
+
+            var fakeDatas = new ServiceDatabaseDatas();
+            //fakeDatas.GenerateDbDatas();
 
 
 

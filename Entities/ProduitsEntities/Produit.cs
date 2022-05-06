@@ -1,14 +1,9 @@
-﻿using Entities.DescriptionsEntitie;
-using Entities.ImagesEntitie;
-using Entities.StocksEntitie;
-using Entities.TagsEntitie;
-using Entities.VariantsEntitie;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Entities.CommentairesEntities;
+using Entities.DescriptionsEntitie;
 
-namespace Entities.ProduitsEntitie
+namespace Entities.ProduitsEntities
 {
     public class Produit
     {

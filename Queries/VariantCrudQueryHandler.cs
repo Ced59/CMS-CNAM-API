@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entities.CommentairesEntities;
 using Entities.DatabasesContext;
-using Entities.VariantsEntitie;
+using Entities.ProduitsEntities;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Queries.Interface;
 

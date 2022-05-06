@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Dto.CommentairesDto;
 using Dto.DescriptionsDto;
-using Entities.CommentairesEntities;
 using Entities.DescriptionsEntitie;
 
 namespace WebAPI.AutoMapperProfiles
