@@ -18,6 +18,18 @@ namespace WebAPI.Controllers
         [Route("createPayment")]
         public IActionResult Post(CreatePaymentData data)
         {
+            if (string.IsNullOrEmpty(data.currency))
+                return BadRequest();
+
+            if (string.IsNullOrEmpty(data.orderId))
+                return BadRequest();
+
+            if (data.customer == null)
+                return BadRequest();
+
+            if (string.IsNullOrEmpty(data.customer.email))
+                return BadRequest();
+
             try
             {
                 using (var client = new WebClient())
@@ -27,6 +39,10 @@ namespace WebAPI.Controllers
                     client.Headers.Add(HttpRequestHeader.Authorization, string.Format("Basic {0}", _credentials));
                     string response = client.UploadString("/api-payment/V4/Charge/CreatePayment", "POST", JsonConvert.SerializeObject(data));
                     LyraFormTokenResponseDto dto = JsonConvert.DeserializeObject<LyraFormTokenResponseDto>(response);
+
+                    if(dto.status == "ERROR")
+                        return BadRequest();
+
                     return Ok(dto);
                 }
             }
