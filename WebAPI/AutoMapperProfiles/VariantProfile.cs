@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using Dto.CommentairesDto;
 using Dto.VariantsDto;
-using Entities.CommentairesEntities;
-using Entities.VariantsEntitie;
+using Entities.ProduitsEntities;
 
 namespace WebAPI.AutoMapperProfiles
 {

@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using Dto.CommentairesDto;
 using Dto.TagsDto;
-using Entities.CommentairesEntities;
-using Entities.TagsEntitie;
+using Entities.ProduitsEntities;
 
 namespace WebAPI.AutoMapperProfiles
 {

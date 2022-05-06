@@ -1,13 +1,9 @@
-﻿using Entities.DescriptionsEntitie;
-using Entities.ImagesEntitie;
-using Entities.StocksEntitie;
-using Entities.TagsEntitie;
-using Entities.VariantsEntitie;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Entities.DescriptionsEntitie;
 
-namespace Entities.ProduitsEntitie
+namespace Entities.ProduitsEntities
 {
     public class Produit
     {
@@ -22,6 +18,7 @@ namespace Entities.ProduitsEntitie
         public virtual List<Image> Images { get; set; }
         public virtual List<Tag> Tags { get; set; }
         public virtual List<Variant> Variants { get; set; }
+        public virtual List<Commentaire> Commentaires { get; set; }
 
     }
 }

@@ -3,8 +3,7 @@ using System.Linq;
 using AutoMapper;
 using Dto.CommentairesDto;
 using Dto.ImagesDto;
-using Entities.CommentairesEntities;
-using Entities.ImagesEntitie;
+using Entities.ProduitsEntities;
 using Microsoft.AspNetCore.Mvc;
 using Queries.Interface;
 

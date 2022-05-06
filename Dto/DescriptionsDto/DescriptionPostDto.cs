@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dto.ProduitsDto;
-using Entities.ProduitsEntitie;
 using Newtonsoft.Json;
 
 namespace Dto.DescriptionsDto

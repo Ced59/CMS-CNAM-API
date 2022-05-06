@@ -1,12 +1,7 @@
-﻿using Entities.ProduitsEntitie;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Entities.ImagesEntitie
+namespace Entities.ProduitsEntities
 {
     public class Image
     {
