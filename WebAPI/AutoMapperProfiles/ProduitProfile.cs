@@ -25,7 +25,7 @@ namespace WebAPI.AutoMapperProfiles
 
             CreateMap<ProduitPostDto, Produit>()
                 .ForMember(c => c.Id, opt => opt.Ignore())
-                .ForMember(c => c.IsArchived, opt => opt.Ignore());
+                .ForMember(c => c.IsArchived, opt => opt.Ignore())
                 .ForMember(c => c.Id, opt => opt.Ignore())
                 .ForMember(c => c.Commentaires, opt => opt.Ignore());
         }
