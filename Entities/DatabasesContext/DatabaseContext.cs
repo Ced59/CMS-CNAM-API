@@ -1,7 +1,9 @@
 ﻿using Entities.CommentairesEntities;
+using Entities.ConditionsGeneralesVenteEntitie;
 using Entities.DescriptionsEntitie;
 using Entities.ExemplesEntitie;
 using Entities.ImagesEntitie;
+using Entities.MentionsLegalesEntitie;
 using Entities.ProduitsEntitie;
 using Entities.StocksEntitie;
 using Entities.TagsEntitie;
@@ -22,6 +24,8 @@ namespace Entities.DatabasesContext
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Variant> Variants { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<MentionsLegales> MentionsLegales { get; set; }
+        public DbSet<ConditionsGeneralesVente> ConditionsGeneralesVentes { get; set; }
 
         public DatabaseContext() : base() {}
         
@@ -38,6 +42,8 @@ namespace Entities.DatabasesContext
             modelBuilder.Entity<Tag>().ToTable("Tags");
             modelBuilder.Entity<Variant>().ToTable("Variants");
             modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<MentionsLegales>().ToTable("MentionsLegales");
+            modelBuilder.Entity<ConditionsGeneralesVente>().ToTable("ConditionsGeneralesVente");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

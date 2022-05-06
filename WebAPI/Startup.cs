@@ -25,6 +25,8 @@ using Entities.ProduitsEntitie;
 using Entities.ImagesEntitie;
 using Entities.StocksEntitie;
 using Entities.DescriptionsEntitie;
+using Entities.MentionsLegalesEntitie;
+using Entities.ConditionsGeneralesVenteEntitie;
 
 namespace WebAPI
 {
@@ -51,6 +53,8 @@ namespace WebAPI
                 config.AddProfile<StockProfile>();
                 config.AddProfile<TagProfile>();
                 config.AddProfile<VariantProfile>();
+                config.AddProfile<MentionsLegalesProfile>();
+                config.AddProfile<ConditionsGeneralesVenteProfile>();
             });
 
             mapperConfig.AssertConfigurationIsValid();
@@ -68,6 +72,8 @@ namespace WebAPI
             services.AddScoped<ICrudInterface<Tag>, TagCrudQueryHandler>();
             services.AddScoped<ICrudInterface<Produit>, ProduitCrudQueryHandler>();
             services.AddScoped<ICrudInterface<Image>, ImageCrudQueryHandler>();
+            services.AddScoped<ICrudInterface<MentionsLegales>, MentionsLegalesCrudQueryHandler>();
+            services.AddScoped<ICrudInterface<ConditionsGeneralesVente>, ConditionsGeneralesVenteCrudQueryHandler>();
 
 
 

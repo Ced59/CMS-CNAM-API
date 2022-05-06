@@ -20,42 +20,54 @@ public class ConditionsGeneralesVenteCrudQueryHandler : ICrudInterface<Condition
             _db = new DatabaseContext();
         }
 
-        public void Historique(Guid id)
+        public void Archive(Guid id)
         {
-            ConditionsGeneralesVente Condition = _db.ConditionsGeneralesVente.FirstOrDefault(u => u.Id == id);
-            Condition.Historique = true;
-            _db.ConditionsGeneralesVente.Update(Condition);
-            _db.SaveChanges();
+            throw new NotImplementedException();
         }
 
         public IEnumerable<ConditionsGeneralesVente> GetAll()
         {
-            return _db.ConditionsGeneralesVente;
+            List<ConditionsGeneralesVente> ConditionsGeneralesVentes = null;
+
+            using (_db)
+            {
+                ConditionsGeneralesVentes = new List<ConditionsGeneralesVente>();
+                ConditionsGeneralesVentes = _db.ConditionsGeneralesVentes.ToList();
+            }
+            return ConditionsGeneralesVentes;
         }
 
         public ConditionsGeneralesVente GetById(Guid id)
         {
-            return _db.ConditionsGeneralesVente.FirstOrDefault(e => e.Id == id);
+            ConditionsGeneralesVente ConditionsGeneralesVente = null;
+            using (_db)
+            {
+                ConditionsGeneralesVente = new ConditionsGeneralesVente();
+                ConditionsGeneralesVente = _db.ConditionsGeneralesVentes.FirstOrDefault(d => d.IsHistorique && d.Id == id);
+            }
+            return ConditionsGeneralesVente;
         }
 
         public void Post(ConditionsGeneralesVente entity)
         {
-            _db.ConditionsGeneralesVente.Add(entity);
-            _db.SaveChanges();
+            if (entity == null) throw new ArgumentNullException();
+            using (_db)
+            {
+                _db.ConditionsGeneralesVentes.Add(entity);
+                _db.SaveChanges();
+            }
         }
-
         public void Put(ConditionsGeneralesVente entity)
         {
-            _db.Update(entity);
-            _db.SaveChanges();
+            using (_db)
+            {
+                _db.ConditionsGeneralesVentes.Update(entity);
+                _db.SaveChanges();
+            }
         }
 
-        public void Archive(Guid id)
-        {
-            ConditionsGeneralesVente Condition = _db.ConditionsGeneralesVente.FirstOrDefault(u => u.Id == id);
-            Condition.Historique = false;
-            _db.ConditionsGeneralesVente.Update(Condition);
-            _db.SaveChanges();
-        }
     }
+
+
 }
+

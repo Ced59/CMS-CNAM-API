@@ -12,7 +12,7 @@ namespace Queries
     public class MentionsLegalesCrudQueryHandler : ICrudInterface<MentionsLegales>
     {
       
-        {
+        
         private readonly DatabaseContext _db;
 
         public MentionsLegalesCrudQueryHandler()
@@ -20,43 +20,54 @@ namespace Queries
             _db = new DatabaseContext();
         }
 
-        public void Historique(Guid id)
+        public void Archive(Guid id)
         {
-            MentionsLegales mention = _db.MentionsLegales.FirstOrDefault(u => u.Id == id);
-            mention.Historique = true;
-            _db.MentionsLegales.Update(mention);
-            _db.SaveChanges();
+            throw new NotImplementedException();
         }
 
         public IEnumerable<MentionsLegales> GetAll()
         {
-            return _db.MentionsLegales;
+            List<MentionsLegales> MentionsLegales = null;
+
+            using (_db)
+            {
+                MentionsLegales = new List<MentionsLegales>();
+                MentionsLegales = _db.MentionsLegales.ToList();
+            }
+            return MentionsLegales;
         }
 
         public MentionsLegales GetById(Guid id)
         {
-            return _db.MentionsLegales.FirstOrDefault(e => e.Id == id);
+            MentionsLegales MentionsLegales = null;
+            using (_db)
+            {
+                MentionsLegales = new MentionsLegales();
+                MentionsLegales = _db.MentionsLegales.FirstOrDefault(d => d.IsHistorique && d.Id == id);
+            }
+            return MentionsLegales; 
         }
 
         public void Post(MentionsLegales entity)
         {
-            _db.MentionsLegales.Add(entity);
-            _db.SaveChanges();
+            if (entity == null) throw new ArgumentNullException();
+            using (_db)
+            {
+                _db.MentionsLegales.Add(entity);
+                _db.SaveChanges();
+            }
         }
 
         public void Put(MentionsLegales entity)
         {
-            _db.Update(entity);
-            _db.SaveChanges();
+            using (_db)
+            {
+                _db.MentionsLegales.Update(entity);
+                _db.SaveChanges();
+            }
         }
 
-        public void Archive(Guid id)
-        {
-            MentionsLegales Condition = _db.MentionsLegales.FirstOrDefault(u => u.Id == id);
-            Condition.Historique = false;
-            _db.MentionsLegales.Update(Condition);
-            _db.SaveChanges();
-        }
+      
 
        
     }

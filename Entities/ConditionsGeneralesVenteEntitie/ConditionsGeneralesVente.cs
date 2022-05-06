@@ -13,7 +13,7 @@ namespace Entities.ConditionsGeneralesVenteEntitie
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Conditions { get; set; }
-        public bool Historique { get; set; }
+        public bool IsHistorique { get; set; }
         public DateTime DateAjout { get; set; }
     }
 }
