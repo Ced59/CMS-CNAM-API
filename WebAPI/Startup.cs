@@ -1,16 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Entities.DatabasesContext;
 using Entities.ExemplesEntitie;
@@ -18,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using Queries;
 using Queries.Interface;
 using WebAPI.AutoMapperProfiles;
-using Entities.DescriptionsEntitie;
 using Entities.ProduitsEntities;
 using WebAPI.DatabaseService;
 

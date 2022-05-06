@@ -47,7 +47,7 @@ namespace WebAPI.Controllers
                 _crudService.Post(commentaire);
                 return Ok();
             }
-            catch (Exception e)
+            catch
             {
                 return StatusCode(500);
             }

@@ -48,8 +48,20 @@ namespace Queries
             Produit Produit = null;
             using (_db)
             {
-                Produit = new Produit();
-                Produit = _db.Produits.FirstOrDefault(d => d.IsActif && d.Id == id);
+                Produit = new Produit()
+                {
+                    Commentaires =  _db.Produits.FirstOrDefault(d => d.IsActif && d.Id == id).Commentaires,
+                    Images =        _db.Produits.FirstOrDefault(d => d.IsActif && d.Id == id).Images,
+                    Tags =          _db.Produits.FirstOrDefault(d => d.IsActif && d.Id == id).Tags,
+                    Description =   _db.Produits.FirstOrDefault(d => d.IsActif && d.Id == id).Description,
+                    Variants =      _db.Produits.FirstOrDefault(d => d.IsActif && d.Id == id).Variants,
+                    DateAjout =     _db.Produits.FirstOrDefault(d => d.IsActif && d.Id == id).DateAjout,
+                    Id =            _db.Produits.FirstOrDefault(d => d.IsActif && d.Id == id).Id,
+                    IsActif =       _db.Produits.FirstOrDefault(d => d.IsActif && d.Id == id).IsActif,
+                    Name =          _db.Produits.FirstOrDefault(d => d.IsActif && d.Id == id).Name,
+                    Price =         _db.Produits.FirstOrDefault(d => d.IsActif && d.Id == id).Price,
+                    Tva =           _db.Produits.FirstOrDefault(d => d.IsActif && d.Id == id).Tva
+                };
             }
             return Produit;
         }
