@@ -20,54 +20,33 @@ namespace Queries
             _db = new DatabaseContext();
         }
 
-        public void Archive(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<MentionsLegales> GetAll()
-        {
-            List<MentionsLegales> MentionsLegales = null;
-
-            using (_db)
-            {
-                MentionsLegales = new List<MentionsLegales>();
-                MentionsLegales = _db.MentionsLegales.ToList();
-            }
-            return MentionsLegales;
-        }
-
-        public MentionsLegales GetById(Guid id)
-        {
-            MentionsLegales MentionsLegales = null;
-            using (_db)
-            {
-                MentionsLegales = new MentionsLegales();
-                MentionsLegales = _db.MentionsLegales.FirstOrDefault(d => d.IsHistorique && d.Id == id);
-            }
-            return MentionsLegales; 
-        }
-
         public void Post(MentionsLegales entity)
         {
-            if (entity == null) throw new ArgumentNullException();
-            using (_db)
-            {
-                _db.MentionsLegales.Add(entity);
-                _db.SaveChanges();
-            }
+            _db.MentionsLegales.Add(entity);
+            _db.SaveChanges();
+        }
+        public MentionsLegales GetById(Guid id)
+        {
+            return _db.MentionsLegales.FirstOrDefault(c => c.Id == id);
+        }
+        public IEnumerable<MentionsLegales> GetAll()
+        {
+            return _db.MentionsLegales;
         }
 
         public void Put(MentionsLegales entity)
         {
-            using (_db)
-            {
-                _db.MentionsLegales.Update(entity);
-                _db.SaveChanges();
-            }
+            _db.Update(entity);
+            _db.SaveChanges();
         }
 
-      
+        public void Archive(Guid id)
+        {
+            MentionsLegales MentionsLegales = _db.MentionsLegales.FirstOrDefault(c => c.Id == id);
+            MentionsLegales.IsHistorique = true;
+            _db.MentionsLegales.Update(MentionsLegales);
+            _db.SaveChanges();
+        }
 
        
     }
