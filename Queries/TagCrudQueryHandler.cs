@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Entities.DatabasesContext;
 using Entities.ProduitsEntities;
-using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Queries.Interface;
 
 namespace Queries
