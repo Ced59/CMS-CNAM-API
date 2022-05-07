@@ -32,6 +32,11 @@ namespace Queries
                 Produits = new List<Produit>();
                 Produits = _db.Produits.Select(p=>new Produit()
                 {
+                    DateAjout = p.DateAjout,
+                    IsArchived = p.IsArchived,
+                    Name = p.Name,
+                    Price = p.Price,
+                    Tva = p.Tva,
                     Id = p.Id,
                     Description = p.Description,
                     Variants = p.Variants,
@@ -50,9 +55,9 @@ namespace Queries
             {
                 Produit = new Produit()
                 {
-                    Commentaires =  _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Commentaires,
-                    Images =        _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Images,
-                    Tags =          _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Tags,
+                    Commages =        _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Images,
+                    Taentaires =  _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Commentaires,
+                    Imgs =          _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Tags,
                     Description =   _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Description,
                     Variants =      _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Variants,
                     DateAjout =     _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).DateAjout,
