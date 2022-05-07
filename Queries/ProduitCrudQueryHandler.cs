@@ -32,17 +32,17 @@ namespace Queries
                 Produits = new List<Produit>();
                 Produits = _db.Produits.Select(p=>new Produit()
                 {
-                    DateAjout = p.DateAjout,
-                    IsArchived = p.IsArchived,
-                    Name = p.Name,
-                    Price = p.Price,
-                    Tva = p.Tva,
-                    Id = p.Id,
-                    Description = p.Description,
-                    Variants = p.Variants,
-                    Images = p.Images,
-                    Commentaires = p.Commentaires,
-                    Tags = p.Tags,
+                    DateAjout       = p.DateAjout,
+                    IsArchived      = p.IsArchived,
+                    Name            = p.Name,
+                    Price           = p.Price,
+                    Tva             = p.Tva,
+                    Id              = p.Id,
+                    Description     = p.Description,
+                    Variants        = p.Variants,
+                    Images          = p.Images,
+                    Commentaires    = p.Commentaires,
+                    Tags            = p.Tags,
                 }).ToList();
             }
             return Produits;
@@ -61,7 +61,7 @@ namespace Queries
                     Variants =      _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Variants,
                     DateAjout =     _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).DateAjout,
                     Id =            _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Id,
-                    IsArchived =       _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).IsArchived,
+                    IsArchived =    _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).IsArchived,
                     Name =          _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Name,
                     Price =         _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Price,
                     Tva =           _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Tva
