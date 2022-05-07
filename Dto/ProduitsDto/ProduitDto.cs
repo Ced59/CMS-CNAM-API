@@ -31,9 +31,6 @@ namespace Dto.ProduitsDto
         
         [JsonProperty(PropertyName = "dateAjout")]
         public DateTime? DateAjout { get; set; }
-        
-        [JsonProperty(PropertyName = "isActif")]
-        public bool IsActif { get; set; }
 
         [JsonProperty(PropertyName = "description")]
         public DescriptionDto Description { get; set; }

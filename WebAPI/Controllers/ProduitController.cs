@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using AutoMapper;
-using Dto.CommentairesDto;
 using Dto.ProduitsDto;
 using Entities.ProduitsEntities;
 using Microsoft.AspNetCore.Mvc;
@@ -59,7 +58,7 @@ namespace WebAPI.Controllers
                 _crudService.Post(Produit);
                 return Ok();
             }
-            catch (Exception e)
+            catch
             {
                 return StatusCode(500);
             }

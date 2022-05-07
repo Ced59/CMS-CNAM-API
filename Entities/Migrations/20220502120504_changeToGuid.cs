@@ -31,7 +31,7 @@ namespace Entities.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateDescription = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActif = table.Column<bool>(type: "bit", nullable: false)
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -59,7 +59,7 @@ namespace Entities.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateAjout = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActif = table.Column<bool>(type: "bit", nullable: false)
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -93,7 +93,7 @@ namespace Entities.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Descriptif = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateAjout = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActif = table.Column<bool>(type: "bit", nullable: false)
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -109,7 +109,7 @@ namespace Entities.Migrations
                     Price = table.Column<float>(type: "real", nullable: false),
                     Tva = table.Column<double>(type: "float", nullable: false),
                     DateAjout = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActif = table.Column<bool>(type: "bit", nullable: false),
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false),
                     DescriptionId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
@@ -132,7 +132,7 @@ namespace Entities.Migrations
                     Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateAjout = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActif = table.Column<bool>(type: "bit", nullable: false),
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false),
                     ProduitId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>

@@ -32,6 +32,11 @@ namespace Queries
                 Produits = new List<Produit>();
                 Produits = _db.Produits.Select(p=>new Produit()
                 {
+                    DateAjout = p.DateAjout,
+                    IsArchived = p.IsArchived,
+                    Name = p.Name,
+                    Price = p.Price,
+                    Tva = p.Tva,
                     Id = p.Id,
                     Description = p.Description,
                     Variants = p.Variants,
@@ -48,8 +53,20 @@ namespace Queries
             Produit Produit = null;
             using (_db)
             {
-                Produit = new Produit();
-                Produit = _db.Produits.FirstOrDefault(d => d.IsActif && d.Id == id);
+                Produit = new Produit()
+                {
+                    Commages =        _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Images,
+                    Taentaires =  _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Commentaires,
+                    Imgs =          _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Tags,
+                    Description =   _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Description,
+                    Variants =      _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Variants,
+                    DateAjout =     _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).DateAjout,
+                    Id =            _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Id,
+                    IsArchived =       _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).IsArchived,
+                    Name =          _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Name,
+                    Price =         _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Price,
+                    Tva =           _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Tva
+                };
             }
             return Produit;
         }

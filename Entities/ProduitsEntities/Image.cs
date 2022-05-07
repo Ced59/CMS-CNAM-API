@@ -11,7 +11,7 @@ namespace Entities.ProduitsEntities
         public string Information { get; set; }
         public string Url { get; set; }
         public DateTime? DateAjout { get; set; }
-        public bool IsActif { get; set; }
-        public  Produit Produit { get; set; }
+        public bool IsArchived { get; set; }
+        public virtual Produit Produit { get; set; }
     }
 }

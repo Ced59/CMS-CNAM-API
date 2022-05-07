@@ -23,13 +23,13 @@ namespace WebAPI.AutoMapperProfiles
         {
             CreateMap<VariantDto, Variant>()
                 .ForMember(c => c.DateAjout, opt => opt.Ignore())
-                .ForMember(c => c.IsActif, opt => opt.Ignore())
-                .ForMember(c => c.Produits, opt => opt.Ignore());
+                .ForMember(c => c.Produits, opt => opt.Ignore())
+                .ForMember(c => c.IsArchived, opt => opt.Ignore());
             CreateMap<VariantPostDto, Variant>()
                 .ForMember(c => c.Id, opt => opt.Ignore())
                 .ForMember(c => c.DateAjout, opt => opt.Ignore())
-                .ForMember(c => c.IsActif, opt => opt.Ignore())
-                .ForMember(c => c.Produits, opt => opt.Ignore());
+                .ForMember(c => c.Produits, opt => opt.Ignore())
+                .ForMember(c => c.IsArchived, opt => opt.Ignore());
         }
     }
 }

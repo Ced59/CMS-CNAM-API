@@ -4,8 +4,7 @@ using Queries.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Queries
 {
@@ -20,7 +19,8 @@ namespace Queries
 
         public void Archive(Guid id)
         {
-            User user = _db.Users.FirstOrDefault(u => u.Id == id);
+            User user = new User();
+                user =_db.Users.FirstOrDefault(u => u.Id == id);
             user.IsArchived = true;
             _db.Users.Update(user);
             _db.SaveChanges();

@@ -23,12 +23,12 @@ namespace WebAPI.AutoMapperProfiles
         {
             CreateMap<TagDto, Tag>()
                 .ForMember(c => c.DateAjout, opt => opt.Ignore())
-                .ForMember(c => c.IsActif, opt => opt.Ignore())
+                .ForMember(c => c.IsArchived, opt => opt.Ignore())
                 .ForMember(c => c.Produits, opt => opt.Ignore());
             CreateMap<TagPostDto, Tag>()
                 .ForMember(c => c.Id, opt => opt.Ignore())
                 .ForMember(c => c.DateAjout, opt => opt.Ignore())
-                .ForMember(c => c.IsActif, opt => opt.Ignore())
+                .ForMember(c => c.IsArchived, opt => opt.Ignore())
                 .ForMember(c => c.Produits, opt => opt.Ignore());
         }
     }
