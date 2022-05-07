@@ -55,9 +55,8 @@ namespace Queries
             {
                 Produit = new Produit()
                 {
-                    Commages =        _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Images,
-                    Taentaires =  _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Commentaires,
-                    Imgs =          _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Tags,
+                    Images =        _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Images,
+                    Commentaires =  _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Commentaires,
                     Description =   _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Description,
                     Variants =      _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).Variants,
                     DateAjout =     _db.Produits.FirstOrDefault(d => d.IsArchived && d.Id == id).DateAjout,
